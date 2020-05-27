@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="CCcat | Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://cc-cat.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="hexo,theme" />
+
+
+<meta name="description" content="
+
+# 前言创建 Hexo 主题非常容易，您只要在 themes 文件夹内，新增一个任意名称的文件夹，并修改_config.yml 内的 theme 设定，即可切换主题。
+这篇文章，简单的讲解了..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    （四）教你任意更换 Hexo 主题风格 |
+    
+    CCcat | Blog
+</title>
+
+<link rel="alternate" href="/atom.xml" title="CCcat | Blog" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='CCcat'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://cc-cat.github.io">
+                        CCcat | Blog</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="（四）教你任意更换 Hexo 主题风格">
+            
+            （四）教你任意更换 Hexo 主题风格
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/hexo/" rel="tag">hexo</a> <a class="tag-link" href="/tags/theme/" rel="tag">theme</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/12/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+        <p class="fa fa-exclamation-triangle warning">
+            本文于<strong>
+                513</strong>
+            天之前发表，文中内容可能已经过时。
+        </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <img src="./img-1.jpg" title="封面" height="200px">
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="# 前言"></a># 前言</h2><p>创建 Hexo 主题非常容易，您只要在 themes 文件夹内，新增一个任意名称的文件夹，并修改_config.yml 内的 theme 设定，即可切换主题。</p>
+<p>这篇文章，简单的讲解了更换 Hexo 主题风格的操作。</p>
+<p>想换任意 Hexo 主题都可以！</p>
+<a id="more"></a>
+
+<p>这篇文章示例主题是：clover</p>
+<br />
+
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="# 步骤"></a># 步骤</h2><h3 id="1-主题风格"><a href="#1-主题风格" class="headerlink" title="1.主题风格"></a>1.主题风格</h3><p>打开链接 <a href="https://hexo.io/themes/" target="_blank" rel="noopener" title="hexo-themes-link">https://hexo.io/themes/</a> ，预览、挑选自己喜欢的主题风格。</p>
+<img src="./img-2.jpg" title="封面" height="200px">
+
+<ul>
+<li>复制自己喜欢的主题的 Git 地址：</li>
+</ul>
+<img src="./img-3.jpg" title="封面" height="200px">
+
+<ul>
+<li>查看主题说明：(README.md)</li>
+</ul>
+<img src="./img-4.jpg" title="封面" height="200px">
+
+<br />
+
+<h3 id="2-开始下载主题"><a href="#2-开始下载主题" class="headerlink" title="2.开始下载主题"></a>2.开始下载主题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="string">'to/your/path'</span> <span class="comment">#项目放置的路径</span></span><br><span class="line"></span><br><span class="line">$ hexo clean <span class="comment">#清除</span></span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">clone</span> https://github.com/esappear/hexo-theme-clover themes/clover <span class="comment">#复制Git地址，放在themes文件夹下</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主题可能会不定时优化和更新，更新主题代码:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/clover</span><br><span class="line"></span><br><span class="line">$ git pull <span class="comment">#主题拉取更新</span></span><br></pre></td></tr></table></figure>
+
+<p>图示：<br><img src="./img-5.jpg" title="封面" height="200px"></p>
+<br />
+
+<p>3.修改根目录下的 <code>_config.yml</code> 文件，修改主题名称。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: clover <span class="comment">#主题名称 要与 主题文件夹名称一致</span></span><br></pre></td></tr></table></figure>
+
+<img src="./img-6.jpg" title="封面" height="200px">
+
+<br />
+
+<p>4.添加主题插件（这个根据不同主题的安装要求下载）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ../../ <span class="comment">#回到你的博客文件根目录</span></span><br><span class="line"></span><br><span class="line">$ npm install hexo-renderer-sass --save</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<p>5.运行博客</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo s -g <span class="comment"># 就是清除、生成、启动</span></span><br></pre></td></tr></table></figure>
+
+<p>启动之后，打开浏览器，在地址栏输入：<a href="http://localhost:4000" target="_blank" rel="noopener" title="http://localhost:4000">http://localhost:4000</a> ，你就会看到 Hexo 的示例页面。</p>
+<br />
+
+<p>图示：<br><img src="./img-7.jpg" title="封面" height="200px"></p>
+<br />
+
+<p>6.发布博客</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo d -g <span class="comment"># 就是清除、生成、部署</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="Error"><a href="#Error" class="headerlink" title="# Error"></a># Error</h2><h3 id="1-执行deploy时报错"><a href="#1-执行deploy时报错" class="headerlink" title="1.执行deploy时报错"></a>1.执行<code>deploy</code>时报错</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ERROR Deployer not found: git</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决方法：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<p>然后再提交就可以了！</p>
+<hr>
+<br />
+
+<h3 id="2-执行-deploy-时报错-1"><a href="#2-执行-deploy-时报错-1" class="headerlink" title="2.执行 deploy 时报错 1"></a>2.执行 deploy 时报错 1</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: Permission denied (publickey)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>解决方法：</p>
+<p>①.这种情况就是要在 github 添加 publickey, 允许 SSH 方式上传代码。步骤如下：<br>②.<a href="https://help.github.com/articles/connecting-to-github-with-ssh/" target="_blank" rel="noopener" title="help.github.com">官方链接地址</a> 解决办法。</p>
+</li>
+</ul>
+<blockquote>
+<p>方法 ①：</p>
+</blockquote>
+<ol>
+<li>生成 key（xxxx 换成你自己 github 用户名）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C “xxxxxxxxx”</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="2">
+<li>打印 key（第一步生成时会在控制台打印出地址）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /Users/xuneng/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ol start="3">
+<li>进入到该<code>github</code>项目的设置，把打印出的<code>key</code>的所有字符串，拷贝到<code>Deploy keys</code>中保存即可。<br>（勾选允许<strong>可写操作</strong>）</li>
+</ol>
+<img src="./img-2.jpg" title="封面" height="160px">
+
+<br />
+
+<ol start="4">
+<li>测试 github SSH 连通性</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>显示如下信息则配置 SSH 成功！其中的 CC-cat 是用户名。</li>
+</ul>
+<pre><code>Hi CC-cat! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</code></pre><br />
+
+<p>然后再提交就可以了！</p>
+<hr>
+<br />
+
+<h3 id="3-执行-deploy-时报错-2"><a href="#3-执行-deploy-时报错-2" class="headerlink" title="3.执行 deploy 时报错 2"></a>3.执行 deploy 时报错 2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error deployer not found:git</span><br></pre></td></tr></table></figure>
+
+<p>问题出现的原因是：你更换了 theme，导致 git 提交的内容与服务器上完全不匹配。</p>
+<ul>
+<li>解决办法：（在博客目录中执行）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<p>然后再提交就可以了！</p>
+<br />
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><p>到这里，文章就结束啦。其他自定义的内容，请查看<code>README.md</code>就可以啦!<br>(∩_∩)</p>
+<br />
+
+<!-- link -->
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/use-websocket-chat/" class="pre-post btn btn-default" title='使用socket.io和node.js搭建websocket应用'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            使用socket.io和node.js搭建websocket应用</span>
+    </a>
+    
+    
+    <a href="/create-the-blog-3/" class="next-post btn btn-default" title='（三）教你使用Hexo-Github-Pages搭建个人独立博客'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            （三）教你使用Hexo-Github-Pages搭建个人独立博客</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+
+<div id="vcomments" class="valine"></div>
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+<script>
+new Valine({
+    av: AV,
+    el: '#vcomments',
+    appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+    appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+    placeholder: '说点什么吧',
+    notify: false,
+    verify: true,
+    avatar: 'mm',
+    meta: 'nick,mail'.split(','),
+    pageSize: '10',
+    path: window.location.pathname,
+    lang: 'zh-CN'.toLowerCase()
+})
+</script>
+
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text"># 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-text"># 步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-主题风格"><span class="toc-text">1.主题风格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-开始下载主题"><span class="toc-text">2.开始下载主题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error"><span class="toc-text"># Error</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-执行deploy时报错"><span class="toc-text">1.执行deploy时报错</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-执行-deploy-时报错-1"><span class="toc-text">2.执行 deploy 时报错 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-执行-deploy-时报错-2"><span class="toc-text">3.执行 deploy 时报错 2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

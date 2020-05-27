@@ -1,0 +1,391 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="CCcat | Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://cc-cat.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="hexo,gitHub,github-pages" />
+
+
+<meta name="description" content="
+
+# 再探 Hexo
+介绍 hexo 常用操作命令，以下操作是在 blog 文件夹中:
+
+1.新建文章:1$ hexo new "My New Post"
+
+
+
+此时在source_posts..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    （三）教你使用Hexo-Github-Pages搭建个人独立博客 |
+    
+    CCcat | Blog
+</title>
+
+<link rel="alternate" href="/atom.xml" title="CCcat | Blog" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='CCcat'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://cc-cat.github.io">
+                        CCcat | Blog</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="（三）教你使用Hexo-Github-Pages搭建个人独立博客">
+            
+            （三）教你使用Hexo-Github-Pages搭建个人独立博客
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/gitHub/" rel="tag">gitHub</a> <a class="tag-link" href="/tags/github-pages/" rel="tag">github-pages</a> <a class="tag-link" href="/tags/hexo/" rel="tag">hexo</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2018/12/29</span>
+    </span>
+    
+    
+</div>
+        
+        
+        <p class="fa fa-exclamation-triangle warning">
+            本文于<strong>
+                515</strong>
+            天之前发表，文中内容可能已经过时。
+        </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <img src="./img-1.jpg" title="封面" height="200px">
+
+<h2 id="再探-Hexo"><a href="#再探-Hexo" class="headerlink" title="# 再探 Hexo"></a># 再探 Hexo</h2><blockquote>
+<p>介绍 hexo 常用操作命令，以下操作是在 blog 文件夹中:</p>
+</blockquote>
+<h3 id="1-新建文章"><a href="#1-新建文章" class="headerlink" title="1.新建文章:"></a>1.新建文章:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>此时在<strong>source_posts</strong>文件夹中便会多出一个文档 <code>title.md</code>。<br>如果要删除，直接在此文件夹下删除对应的文件即可。<br><br /></p>
+<h3 id="2-生成静态页面"><a href="#2-生成静态页面" class="headerlink" title="2.生成静态页面"></a>2.生成静态页面</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>生成的静态内容在<strong>public</strong>文件夹内。<br><br /></p>
+<h3 id="3-清除生成内容"><a href="#3-清除生成内容" class="headerlink" title="3.清除生成内容"></a>3.清除生成内容</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h3 id="4-部署-Hexo"><a href="#4-部署-Hexo" class="headerlink" title="4.部署 Hexo"></a>4.部署 Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>该操作会将 hexo 生成的静态内容部署到配置的仓库中</p>
+</blockquote>
+<br />
+
+<h2 id="部署-Hexo"><a href="#部署-Hexo" class="headerlink" title="# 部署 Hexo"></a># 部署 Hexo</h2><h3 id="1-编辑配置文件，关联远程仓库"><a href="#1-编辑配置文件，关联远程仓库" class="headerlink" title="1.编辑配置文件，关联远程仓库"></a>1.编辑配置文件，关联远程仓库</h3><ul>
+<li>在编辑器中打开 Hexo 配置文件_config.yml，找到下面内容:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line"><span class="built_in">type</span>:</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加 github 仓库信息:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/deployment.html</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:CC-cat/CC-cat.github.io.git <span class="comment">#github仓库地址</span></span><br><span class="line">  branch: master <span class="comment"># github分支</span></span><br><span class="line">  message:</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><span style="color:red;">注意：</span> &gt; <code>type</code>、<code>repo</code>.. 的前面有 2 个空格，<code>:</code> 号后面有 1 个空格。<br><code>:</code> 号后面的空格不可缺少，否则会报错！</p>
+</blockquote>
+<br />
+
+<h3 id="2-安装-git-插件"><a href="#2-安装-git-插件" class="headerlink" title="2.安装 git 插件"></a>2.安装 git 插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果没有安装 git 插件，会有错误提示，安装后重新部署就可以了。</p>
+</blockquote>
+<br />
+
+<h3 id="3-部署"><a href="#3-部署" class="headerlink" title="3.部署"></a>3.部署</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>如果没有意外，部署就成功了，可以打开 <code>http://&lt;用户名&gt;.github.io</code> 查看。<br>或者在 <a href="https://github.com/" target="_blank" rel="noopener" title="Github">GitHub</a> 博客代码页，找到 <code>Settings</code> 在 <code>GitHub Pages</code> 处查看。</p>
+<br />
+
+<h2 id="Hexo-命令缩写"><a href="#Hexo-命令缩写" class="headerlink" title="# Hexo 命令缩写"></a># Hexo 命令缩写</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo n <span class="string">'title'</span> == hexo new <span class="string">'title'</span> <span class="comment"># 写文章</span></span><br><span class="line">hexo g == hexo generate  <span class="comment"># 生成静态文件，会在当前目录下生成一个新的叫做public的文件夹</span></span><br><span class="line">hexo s == hexo server	<span class="comment"># 启动本地web服务，用于博客的预览默认端口4000，'ctrl + c'关闭server）</span></span><br><span class="line">hexo d == hexo deploy <span class="comment"># 部署博客到远端（比如github, heroku等平台）</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"postName"</span> <span class="comment"># 新建文章</span></span><br><span class="line">$ hexo new page <span class="string">"pageName"</span> <span class="comment"># 新建页面</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="推送到远程"><a href="#推送到远程" class="headerlink" title="# 推送到远程"></a># 推送到远程</h2><p>使用<code>hexo clean</code> <code>hexo g</code> <code>hexo d</code> 将本地博客推送到远程，即可看到更新后的博客文章。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="Hexo-命令组合"><a href="#Hexo-命令组合" class="headerlink" title="# Hexo 命令组合"></a># Hexo 命令组合</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo s -g <span class="comment"># 就是清除、生成、启动</span></span><br><span class="line">$ hexo clean &amp;&amp; hexo d -g <span class="comment"># 就是清除、生成、部署</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<ul>
+<li>目前我安装所用的本地环境如下：(可以通过<code>hexo -v</code>查看)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo-cli: 1.1.0</span><br><span class="line">os: Darwin 18.2.0 darwin x64</span><br><span class="line">http_parser: 2.7.0</span><br><span class="line">node: 8.6.0</span><br><span class="line">v8: 6.0.287.53</span><br><span class="line">uv: 1.14.1</span><br><span class="line">zlib: 1.2.11</span><br><span class="line">ares: 1.10.1-DEV</span><br><span class="line">modules: 57</span><br><span class="line">nghttp2: 1.25.0</span><br><span class="line">openssl: 1.0.2l</span><br><span class="line">icu: 59.1</span><br><span class="line">unicode: 9.0</span><br><span class="line">cldr: 31.0.1</span><br><span class="line">tz: 2017b</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><blockquote>
+<p>以上，就完成了个人博客的基础搭建。<br>希望大家都能有个属于自己的一片天地！<br>(∩_∩)</p>
+</blockquote>
+<br />
+
+<!-- link -->
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/create-the-blog-4/" class="pre-post btn btn-default" title='（四）教你任意更换 Hexo 主题风格'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            （四）教你任意更换 Hexo 主题风格</span>
+    </a>
+    
+    
+    <a href="/create-the-blog-2/" class="next-post btn btn-default" title='（二）教你使用Hexo-Github-Pages搭建个人独立博客'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            （二）教你使用Hexo-Github-Pages搭建个人独立博客</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+
+<div id="vcomments" class="valine"></div>
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+<script>
+new Valine({
+    av: AV,
+    el: '#vcomments',
+    appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+    appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+    placeholder: '说点什么吧',
+    notify: false,
+    verify: true,
+    avatar: 'mm',
+    meta: 'nick,mail'.split(','),
+    pageSize: '10',
+    path: window.location.pathname,
+    lang: 'zh-CN'.toLowerCase()
+})
+</script>
+
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#再探-Hexo"><span class="toc-text"># 再探 Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建文章"><span class="toc-text">1.新建文章:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-生成静态页面"><span class="toc-text">2.生成静态页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-清除生成内容"><span class="toc-text">3.清除生成内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-部署-Hexo"><span class="toc-text">4.部署 Hexo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署-Hexo"><span class="toc-text"># 部署 Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-编辑配置文件，关联远程仓库"><span class="toc-text">1.编辑配置文件，关联远程仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装-git-插件"><span class="toc-text">2.安装 git 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-部署"><span class="toc-text">3.部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-命令缩写"><span class="toc-text"># Hexo 命令缩写</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推送到远程"><span class="toc-text"># 推送到远程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-命令组合"><span class="toc-text"># Hexo 命令组合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

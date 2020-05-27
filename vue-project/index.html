@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="CCcat | Blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://cc-cat.github.io">
+    <!--SEO-->
+
+<meta name="keywords" content="vue,webpack,element-ui" />
+
+
+<meta name="description" content="
+
+# 介绍Vue.js 是一款极简的 mvvm 框架。用一个词来形容它，就是 “轻·巧” 。如果我们用一句话来描述它，它能够集众多优秀逐流的前端框架之大成，但同时保持简单易用。
+
+
+
+
+# 全..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    vue从0到1：vue + webpack + element-ui + axios 项目搭建 |
+    
+    CCcat | Blog
+</title>
+
+<link rel="alternate" href="/atom.xml" title="CCcat | Blog" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    /./img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='CCcat'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://cc-cat.github.io">
+                        CCcat | Blog</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/工具/"><i class="fa "></i>
+                                工具</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="vue从0到1：vue + webpack + element-ui + axios 项目搭建">
+            
+            vue从0到1：vue + webpack + element-ui + axios 项目搭建
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/element-ui/" rel="tag">element-ui</a> <a class="tag-link" href="/tags/vue/" rel="tag">vue</a> <a class="tag-link" href="/tags/webpack/" rel="tag">webpack</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2019/02/15</span>
+    </span>
+    
+    
+</div>
+        
+        
+        <p class="fa fa-exclamation-triangle warning">
+            本文于<strong>
+                467</strong>
+            天之前发表，文中内容可能已经过时。
+        </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <img src="./img-1.jpg" title="封面" height="200px">
+
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="# 介绍"></a># 介绍</h2><p><code>Vue.js</code> 是一款极简的 mvvm 框架。用一个词来形容它，就是 “<strong>轻·巧</strong>” 。<br>如果我们用一句话来描述它，它能够集众多优秀逐流的前端框架之大成，但同时保持简单易用。</p>
+<a id="more"></a>
+
+<br />
+
+<h2 id="全局安装-vue-cli"><a href="#全局安装-vue-cli" class="headerlink" title="# 全局安装 vue-cli"></a># 全局安装 vue-cli</h2><!-- 在新创建的`'vue-project'`文件夹路径下，执行命令： -->
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g vue  <span class="comment">#全局安装vue</span></span><br><span class="line"></span><br><span class="line">$ npm install -g vue-cli  <span class="comment">#全局安装vue-cli</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="全局安装-webpack"><a href="#全局安装-webpack" class="headerlink" title="# 全局安装 webpack"></a># 全局安装 webpack</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g webpack  <span class="comment">#全局安装webpack</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="# 初始化项目"></a># 初始化项目</h2><h3 id="1-创建项目文件夹"><a href="#1-创建项目文件夹" class="headerlink" title="1.创建项目文件夹"></a>1.创建项目文件夹</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ vue init webpack <span class="string">'vue-project'</span>  <span class="comment">#初始化项目，项目名称：vue-project</span></span><br><span class="line"></span><br><span class="line">$ npm install webpack --save-dev  <span class="comment">#项目内安装webpack</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注：<strong>–save</strong> 和 <strong>–save-dev</strong> 是将 安装好的包 保存在 <strong>package.json</strong> 中，可以省掉你手动修改 <strong>package.json</strong> 文件的步骤。</p>
+</blockquote>
+<p>详细说明：</p>
+<blockquote>
+<p><strong>–save</strong> : 自动把模块和版本号添加到 <strong>dependencies</strong> 部分。<br><strong>–save-dev</strong> : 自动把模块和版本号添加到 <strong>devdependencies</strong> 部分。</p>
+</blockquote>
+<ul>
+<li>form <a href="https://docs.npmjs.com/cli/install" target="_blank" rel="noopener">https://docs.npmjs.com/cli/install</a></li>
+</ul>
+<ul>
+<li>通过这些命令，我们会得到一个新的 package.json。然后再做一个试验就懂得了区别：删除 node_modules 目录，然后执行 npm install –production，可以看到，npm 只帮我们自动安装 package.json 中 dependencies 部分的模块；如果执行 npm install ，则 package.json 中指定的 dependencies 和 devDependencies 都会被自动安装进来。</li>
+</ul>
+<br />
+
+<h3 id="2-在本地运行项目"><a href="#2-在本地运行项目" class="headerlink" title="2.在本地运行项目"></a>2.在本地运行项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev  <span class="comment">#运行项目</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>根据终端提示，在浏览器打开 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Your application is running here: http://localhost:8080</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="节点图示"><a href="#节点图示" class="headerlink" title="# 节点图示"></a># 节点图示</h2><blockquote>
+<p>图示里是先创建了项目文件夹，最终效果跟上面的步骤一样。</p>
+</blockquote>
+<p>从新建项目起：</p>
+<img src="./img-2.jpg" title="封面" height="160px">
+
+<hr>
+<img src="./img-3.jpg" title="封面" height="215px">
+
+<hr>
+<img src="./img-4.jpg" title="封面" height="248px">
+
+<hr>
+<img src="./img-7.jpg" title="封面" height="160px">
+
+<br />
+
+<h2 id="节点说明（vue-webpack-项目）"><a href="#节点说明（vue-webpack-项目）" class="headerlink" title="# 节点说明（vue + webpack 项目）"></a># 节点说明（vue + webpack 项目）</h2><p>执行 <strong>npm run dev</strong> 成功后，打开浏览器 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 并且没报错的情况下，</p>
+<p><strong>vue + webpack 项目搭建</strong> 就完成了，按需进行以下安装。(∩_∩)</p>
+<br />
+
+<h2 id="使用-Element-UI-前，需安装、修改的配置"><a href="#使用-Element-UI-前，需安装、修改的配置" class="headerlink" title="# 使用 Element-UI 前，需安装、修改的配置"></a># 使用 Element-UI 前，需安装、修改的配置</h2><h3 id="1-安装loader模块"><a href="#1-安装loader模块" class="headerlink" title="1.安装loader模块"></a>1.安装<strong>loader</strong>模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install style-loader -D</span><br><span class="line"></span><br><span class="line">$ npm install css-loader -D</span><br><span class="line"></span><br><span class="line">$ npm install file-loader -D</span><br></pre></td></tr></table></figure>
+
+<p>图示：<br><img src="./img-5.jpg" title="封面" height="248px"></p>
+<br />
+
+<h2 id="安装-Element-UI"><a href="#安装-Element-UI" class="headerlink" title="# 安装 Element-UI"></a># 安装 Element-UI</h2><h3 id="1-安装element-ui模块"><a href="#1-安装element-ui模块" class="headerlink" title="1.安装element-ui模块"></a>1.安装<strong>element-ui</strong>模块</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install element-ui --save</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h3 id="2-引入-Element，前面已经全局安装了-element-ui，只需要在-Vue-项目中引入即可"><a href="#2-引入-Element，前面已经全局安装了-element-ui，只需要在-Vue-项目中引入即可" class="headerlink" title="2.引入 Element，前面已经全局安装了 element-ui，只需要在 Vue 项目中引入即可"></a>2.引入 Element，前面已经全局安装了 element-ui，只需要在 Vue 项目中引入即可</h3><p>打开项目：src/main.js,添加下面三条</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import ElementUI from <span class="string">'element-ui'</span></span><br><span class="line">import <span class="string">'element-ui/lib/theme-chalk/index.css'</span></span><br><span class="line">Vue.use(ElementUI)</span><br></pre></td></tr></table></figure>
+
+<p>图示：<br><img src="./img-6.jpg" title="封面" height="220px"></p>
+<br />
+
+<h3 id="3-结束-🔚"><a href="#3-结束-🔚" class="headerlink" title="3.结束 🔚"></a>3.结束 🔚</h3><p>到这一步，element-ui 模块就安装完成了！😄😄<br>然后在.vue 文件里就直接使用了。</p>
+<br />
+
+<h2 id="节点说明（vue-webpack-element-ui-项目）"><a href="#节点说明（vue-webpack-element-ui-项目）" class="headerlink" title="# 节点说明（vue + webpack + element-ui 项目）"></a># 节点说明（vue + webpack + element-ui 项目）</h2><p>执行到这，<strong>vue + webpack + element-ui 项目搭建</strong> 就完成了，按需进行以下安装。(∩_∩)</p>
+<br />
+
+<h2 id="安装-Axios"><a href="#安装-Axios" class="headerlink" title="# 安装 Axios"></a># 安装 Axios</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install axios</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="安装-Vue-axios"><a href="#安装-Vue-axios" class="headerlink" title="# 安装 Vue-axios"></a># 安装 Vue-axios</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save axios vue-axios</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="使用-Axios-小案例"><a href="#使用-Axios-小案例" class="headerlink" title="# 使用 Axios 小案例"></a># 使用 Axios 小案例</h2><h3 id="1-新建文件"><a href="#1-新建文件" class="headerlink" title="1.新建文件"></a>1.新建文件</h3><p>新建文件 <strong>RouterPage.vue</strong>，位置放在 <code>src</code> &gt; <code>components</code> 文件夹下。</p>
+<img src="./img-10.jpg" title="封面" height="220px">
+
+<br />
+
+<h3 id="2-修改默认的路由文件"><a href="#2-修改默认的路由文件" class="headerlink" title="2.修改默认的路由文件"></a>2.修改默认的路由文件</h3><p>文件位置在<code>src</code> &gt; <code>router</code> &gt; <code>index.js</code>。</p>
+<img src="./img-9.jpg" title="封面" height="220px">
+
+<br />
+
+<h3 id="3-运行"><a href="#3-运行" class="headerlink" title="3.运行"></a>3.运行</h3><p>运行 <strong>npm run dev</strong> 成功后，打开浏览器 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>，测试页面是否修改正确。</p>
+<p>终端：<br><img src="./img-11.jpg" title="封面" height="90px"></p>
+<p>浏览器：（显示正确）<br><img src="./img-12.jpg" title="封面" height="90px"></p>
+<p>在终端使用快捷键 <code>control + c</code>，来终止运行。</p>
+<br />
+
+<h3 id="4-新建必备文件"><a href="#4-新建必备文件" class="headerlink" title="4.新建必备文件"></a>4.新建必备文件</h3><ul>
+<li><p>新建文件夹 <strong>utils</strong> ，位置放在 <code>src</code> 文件夹下。</p>
+</li>
+<li><p>新建文件 <strong>request.js</strong> ，位置放在 <code>src</code> &gt; <code>utils</code> 文件夹下。</p>
+</li>
+</ul>
+<p><strong>request.js</strong> 文件内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">import axios from <span class="string">'axios'</span></span><br><span class="line">import &#123; Message &#125; from <span class="string">'element-ui'</span></span><br><span class="line"></span><br><span class="line">// create an axios instance</span><br><span class="line">axios.defaults.withCredentials = <span class="literal">false</span></span><br><span class="line">const service = axios.create(&#123;</span><br><span class="line">  baseURL: <span class="string">'https://你的请求域名地址.com'</span>, // api 的 base_url</span><br><span class="line">  timeout: 50000 // request timeout</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">// request interceptor</span><br><span class="line">service.interceptors.request.use(</span><br><span class="line">  config =&gt;</span><br><span class="line">  // Do something before request is sent</span><br><span class="line">    config,</span><br><span class="line">  (error) =&gt; &#123;</span><br><span class="line">    // Do something with request error</span><br><span class="line">    console.log(error) // <span class="keyword">for</span> debug</span><br><span class="line">    Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">// response interceptor</span><br><span class="line">service.interceptors.response.use(</span><br><span class="line">  response =&gt; response,</span><br><span class="line">  (error) =&gt; &#123;</span><br><span class="line">    console.log(`err<span class="variable">$&#123;error&#125;</span>`) // <span class="keyword">for</span> debug</span><br><span class="line">    Message(&#123;</span><br><span class="line">      showClose: <span class="literal">true</span>,</span><br><span class="line">      message: error.message + <span class="string">'，请重新刷新页面试试~'</span>,</span><br><span class="line">      <span class="built_in">type</span>: <span class="string">'error'</span>,</span><br><span class="line">      duration: 5 * 1000</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="built_in">return</span> Promise.reject(error)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default service</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>新建文件夹 <strong>api</strong> ，位置放在 <code>src</code> 文件夹下。</p>
+</li>
+<li><p>新建文件 <strong>routerPage.js</strong> ，位置放在 <code>src</code> &gt; <code>api</code> 文件夹下。</p>
+</li>
+</ul>
+<img src="./img-8.jpg" title="封面" height="220px">
+
+<p><strong>routerPage.js</strong> 文件内容：</p>
+<p>示例只用了 HTTP GET 测试，我这里把 http post 写法注释掉了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import request from <span class="string">'@/utils/request'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># http get 写法</span></span><br><span class="line"><span class="built_in">export</span> <span class="keyword">function</span> msgCheck (query) &#123;</span><br><span class="line">  <span class="built_in">return</span> request(&#123;</span><br><span class="line">    url: <span class="string">'/api/msgTxtCheck'</span>,</span><br><span class="line">    method: <span class="string">'get'</span>,</span><br><span class="line">    params: query</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># http post 写法</span></span><br><span class="line"><span class="comment"># export function msgShow (name, key) &#123;</span></span><br><span class="line"><span class="comment">#   var params = new URLSearchParams()</span></span><br><span class="line"><span class="comment">#   params.append('name', name)  #参数</span></span><br><span class="line"><span class="comment">#   params.append('key', key)  #参数</span></span><br><span class="line"><span class="comment">#   return request(&#123;</span></span><br><span class="line"><span class="comment">#     url: '/api/msgTxtShow',</span></span><br><span class="line"><span class="comment">#     method: 'post',</span></span><br><span class="line"><span class="comment">#     data: params</span></span><br><span class="line"><span class="comment">#   &#125;)</span></span><br><span class="line"><span class="comment"># &#125;</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h3 id="5-修改文件"><a href="#5-修改文件" class="headerlink" title="5.修改文件"></a>5.修改文件</h3><p>修改文件 <strong>RouterPage.vue</strong> ，增加测试按钮。</p>
+<p>RouterPage.vue 文件内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=<span class="string">'app-container'</span>&gt;</span><br><span class="line">    &lt;div&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;el-button <span class="built_in">type</span>=<span class="string">'primary'</span> icon=<span class="string">'el-icon-search'</span> @click=<span class="string">'getMsgCheck'</span>&gt;&#123;&#123; btnName &#125;&#125;&lt;/el-button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; msgCheck &#125; from <span class="string">'../api/routerPage'</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> default &#123;</span><br><span class="line">  name: <span class="string">'RouterPage'</span>,</span><br><span class="line">  <span class="function"><span class="title">data</span></span> () &#123;</span><br><span class="line">    <span class="built_in">return</span> &#123;</span><br><span class="line">      msg: <span class="string">'搜芽'</span>,</span><br><span class="line">      btnName: <span class="string">'我是按钮~'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    <span class="function"><span class="title">getMsgCheck</span></span> () &#123;</span><br><span class="line">      var data = &#123;</span><br><span class="line">        boos_name: this.msg</span><br><span class="line">      &#125;</span><br><span class="line">      msgCheck(data).<span class="keyword">then</span>(response =&gt; &#123;</span><br><span class="line">        console.log(response)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Add <span class="string">'scoped'</span> attribute to <span class="built_in">limit</span> CSS to this component only --&gt;</span><br><span class="line">&lt;style scoped&gt;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>执行 <strong>npm run dev</strong>成功后，打开浏览器 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>，开始测试。</p>
+<img src="./img-13.jpg" title="封面" height="220px">
+
+<p>图示总结：<br><img src="./img-14.jpg" title="封面" height="220px"></p>
+<br />
+
+<h2 id="常用-Vue-终端命令"><a href="#常用-Vue-终端命令" class="headerlink" title="# 常用 Vue 终端命令"></a># 常用 Vue 终端命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm run dev <span class="comment">#本地运行项目</span></span><br><span class="line"></span><br><span class="line">$ npm run build <span class="comment">#发布项目到线上</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><blockquote>
+<p>vue + webpack + element-ui + axios 项目搭建，完成啦！<br>以上，就完成了一个正式 Vue 项目的基础搭建。<br>(∩_∩)</p>
+</blockquote>
+<br />
+
+<!-- link -->
+
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/create-the-blog-5/" class="pre-post btn btn-default" title='Hexo 更换主题风格 之 hexo-theme-snippet'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Hexo 更换主题风格 之 hexo-theme-snippet</span>
+    </a>
+    
+    
+    <a href="/ECMAScript-6-Promise/" class="next-post btn btn-default" title='ECMAScript 6 - Promise对象'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            ECMAScript 6 - Promise对象</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+<div id="comments">
+    
+
+<div id="vcomments" class="valine"></div>
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+<script>
+new Valine({
+    av: AV,
+    el: '#vcomments',
+    appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+    appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+    placeholder: '说点什么吧',
+    notify: false,
+    verify: true,
+    avatar: 'mm',
+    meta: 'nick,mail'.split(','),
+    pageSize: '10',
+    path: window.location.pathname,
+    lang: 'zh-CN'.toLowerCase()
+})
+</script>
+
+
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text"># 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局安装-vue-cli"><span class="toc-text"># 全局安装 vue-cli</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局安装-webpack"><span class="toc-text"># 全局安装 webpack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化项目"><span class="toc-text"># 初始化项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-创建项目文件夹"><span class="toc-text">1.创建项目文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在本地运行项目"><span class="toc-text">2.在本地运行项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节点图示"><span class="toc-text"># 节点图示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节点说明（vue-webpack-项目）"><span class="toc-text"># 节点说明（vue + webpack 项目）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Element-UI-前，需安装、修改的配置"><span class="toc-text"># 使用 Element-UI 前，需安装、修改的配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装loader模块"><span class="toc-text">1.安装loader模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Element-UI"><span class="toc-text"># 安装 Element-UI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装element-ui模块"><span class="toc-text">1.安装element-ui模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-引入-Element，前面已经全局安装了-element-ui，只需要在-Vue-项目中引入即可"><span class="toc-text">2.引入 Element，前面已经全局安装了 element-ui，只需要在 Vue 项目中引入即可</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-结束-🔚"><span class="toc-text">3.结束 🔚</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#节点说明（vue-webpack-element-ui-项目）"><span class="toc-text"># 节点说明（vue + webpack + element-ui 项目）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Axios"><span class="toc-text"># 安装 Axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Vue-axios"><span class="toc-text"># 安装 Vue-axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Axios-小案例"><span class="toc-text"># 使用 Axios 小案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建文件"><span class="toc-text">1.新建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-修改默认的路由文件"><span class="toc-text">2.修改默认的路由文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-运行"><span class="toc-text">3.运行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-新建必备文件"><span class="toc-text">4.新建必备文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-修改文件"><span class="toc-text">5.修改文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用-Vue-终端命令"><span class="toc-text"># 常用 Vue 终端命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
