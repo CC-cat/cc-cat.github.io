@@ -172,7 +172,7 @@
         
         <p class="fa fa-exclamation-triangle warning">
             本文于<strong>
-                505</strong>
+                600</strong>
             天之前发表，文中内容可能已经过时。
         </p>
         
@@ -220,35 +220,24 @@
 <li><p>app.js 文件内容如下：</p>
 </li>
 </ul>
-<div style="height:300px;overflow:auto;border:1px solid #ccc;">``` bash
-// 引入需要的模块：http和socket.io
-// 定义端口号：8080
-var http = require('http'),
-    io = require('socket.io'),
-    port = process.env.PORT || 8080;
+<div style="height:300px;overflow:auto;border:1px solid #ccc;">
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">// 引入需要的模块：http和socket.io</span><br><span class="line">// 定义端口号：8080</span><br><span class="line">var http = require(<span class="string">'http'</span>),</span><br><span class="line">    io = require(<span class="string">'socket.io'</span>),</span><br><span class="line">    port = process.env.PORT || 8080;</span><br><span class="line"></span><br><span class="line">//创建 server</span><br><span class="line">var server = http.createServer(<span class="keyword">function</span> (req, res) &#123;</span><br><span class="line">// Send HTML headers and message</span><br><span class="line">res.writeHead(200, &#123;</span><br><span class="line"><span class="string">'Content-Type'</span>: <span class="string">'text/html'</span></span><br><span class="line">&#125;);</span><br><span class="line">res.end(<span class="string">'# Hello Socket Lover!'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// listener</span><br><span class="line">// 监听 端口(8080) 事件</span><br><span class="line">server.listen(port, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">console.log(<span class="string">'listening on \*:'</span> + port);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 创建 socket</span><br><span class="line">var socket = io.listen(server);</span><br><span class="line"></span><br><span class="line">// 添加连接监听</span><br><span class="line">socket.on(<span class="string">'connection'</span>, <span class="keyword">function</span> (client) &#123;</span><br><span class="line"></span><br><span class="line">    // 连接成功则执行下面的监听</span><br><span class="line">    client.on(<span class="string">'message'</span>, <span class="keyword">function</span> (event) &#123;</span><br><span class="line">        // Received message from client!</span><br><span class="line">        console.log(<span class="string">'message'</span>, event);</span><br><span class="line">        socket.emit(<span class="string">"message"</span>, event);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    client.on(<span class="string">'data'</span>, <span class="keyword">function</span> (event) &#123;</span><br><span class="line">        // Received data from client!</span><br><span class="line">        console.log(<span class="string">'data'</span>, event);</span><br><span class="line">        socket.emit(<span class="string">"data"</span>, event);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    // 断开连接callback</span><br><span class="line">    client.on(<span class="string">'disconnect'</span>, <span class="function"><span class="title">function</span></span> () &#123;</span><br><span class="line">        console.log(<span class="string">'Server has disconnected'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+</div>
 
-<p>//创建 server<br>var server = http.createServer(function (req, res) {<br>// Send HTML headers and message<br>res.writeHead(200, {<br>‘Content-Type’: ‘text/html’<br>});<br>res.end(‘# Hello Socket Lover!’);<br>});</p>
-<p>// listener<br>// 监听 端口(8080) 事件<br>server.listen(port, function () {<br>console.log(‘listening on *:’ + port);<br>});</p>
-<p>// 创建 socket<br>var socket = io.listen(server);</p>
-<p>// 添加连接监听<br>socket.on(‘connection’, function (client) {</p>
-<pre><code>// 连接成功则执行下面的监听
-client.on(&apos;message&apos;, function (event) {
-    // Received message from client!
-    console.log(&apos;message&apos;, event);
-    socket.emit(&quot;message&quot;, event);
-});
+<br />
 
-client.on(&apos;data&apos;, function (event) {
-    // Received data from client!
-    console.log(&apos;data&apos;, event);
-    socket.emit(&quot;data&quot;, event);
-});
+<ul>
+<li>现在的 <code>airconnect</code> 文件夹内容截图：</li>
+</ul>
+<img src="./img-6.jpg" title="封面" height="180px">
 
-// 断开连接callback
-client.on(&apos;disconnect&apos;, function () {
-    console.log(&apos;Server has disconnected&apos;);
-});</code></pre><p>});</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;br &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">* 现在的 &#96;airconnect&#96; 文件夹内容截图：</span><br><span class="line"></span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;img-6.jpg&quot; title&#x3D;&quot;封面&quot; height&#x3D;&quot;180px&quot;&gt;</span><br><span class="line"></span><br><span class="line">关于截图里的 &#96;page1.html&#96;、&#96;page2.html&#96; 文件，我们后续讲到。</span><br><span class="line"></span><br><span class="line">&lt;br &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">### 5.运行</span><br><span class="line"></span><br><span class="line">* 我们使http服务器侦听端口8080，这时在终端运行命令：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">$ node app.js</span><br></pre></td></tr></table></figure>
+<p>关于截图里的 <code>page1.html</code>、<code>page2.html</code> 文件，我们后续讲到。</p>
+<br />
+
+<h3 id="5-运行"><a href="#5-运行" class="headerlink" title="5.运行"></a>5.运行</h3><ul>
+<li>我们使http服务器侦听端口8080，这时在终端运行命令：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node app.js</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
 
 <p>截图：<br><img src="./img-3.jpg" title="封面" height="140px"></p>
 <ul>
@@ -379,7 +368,7 @@ client.on(&apos;disconnect&apos;, function () {
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text"># 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-框架"><span class="toc-text"># Web 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建文件夹"><span class="toc-text">1.新建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新建文件"><span class="toc-text">2.新建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装-socket-io-模块。"><span class="toc-text">3.安装 socket.io 模块。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提供-HTML"><span class="toc-text"># 提供 HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现通讯"><span class="toc-text"># 实现通讯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#介绍"><span class="toc-text"># 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-框架"><span class="toc-text"># Web 框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-新建文件夹"><span class="toc-text">1.新建文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新建文件"><span class="toc-text">2.新建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装-socket-io-模块。"><span class="toc-text">3.安装 socket.io 模块。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-运行"><span class="toc-text">5.运行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#提供-HTML"><span class="toc-text"># 提供 HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现通讯"><span class="toc-text"># 实现通讯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
         
     </div>
 </aside>
