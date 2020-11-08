@@ -1,368 +1,43 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
+const { Component } = require('inferno');
+const classname = require('hexo-component-inferno/lib/util/classname');
+const Head = require('./common/head');
+const Navbar = require('./common/navbar');
+const Widgets = require('./common/widgets');
+const Footer = require('./common/footer');
+const Scripts = require('./common/scripts');
+const Search = require('./common/search');
 
-<head>
-    <!--Setting-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="CCcat | Blog">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    <meta name="browsermode" content="application">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="theme-version" content="1.2.3">
-    <meta name="root" content="/">
-    <link rel="dns-prefetch" href="https://cc-cat.github.io">
-    <!--SEO-->
+module.exports = class extends Component {
+    render() {
+        const { site, config, page, helper, body } = this.props;
 
-<meta name="keywords" content="hexo,gitHub,github-pages" />
+        const language = page.lang || page.language || config.language;
+        const columnCount = Widgets.getColumnCount(config.widgets);
 
-
-<meta name="description" content="
-
-# 前言若您在安装过程中遇到问题或无法找到解决方式，可以在评论区提问，我会尽力帮助您解决问题！
-
-
-
-# 推荐理由1. 免费Github 提供 GitHub Pages 服务是免费的，有 3..." />
-
-
-<meta name="robots" content="all" />
-<meta name="google" content="all" />
-<meta name="googlebot" content="all" />
-<meta name="verify" content="all" />
-    <!--Title-->
-
-<title>
-    
-    （一）教你使用Hexo-Github-Pages搭建个人独立博客 |
-    
-    CCcat | Blog
-</title>
-
-<link rel="alternate" href="/atom.xml" title="CCcat | Blog" type="application/atom+xml">
-
-
-<link rel="icon" href="/favicon.ico">
-
-    
-
-
-<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
-<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
-<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
-
-    
-
-
-
-    
-
-<meta name="generator" content="Hexo 4.2.1"></head>
-<!--[if lte IE 8]>
-<style>
-    html{ font-size: 1em }
-</style>
-<![endif]-->
-<!--[if lte IE 9]>
-<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
-<![endif]-->
-<body>
-    <header class="main-header"  style="background-image:url(
-    /img/banner.jpg)"
-     >
-    <div class="main-header-box">
-        <a class="header-avatar" href="/" title='CCcat'>
-            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
-        </a>
-        <div class="branding">
-            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
-            
-            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
-            
-        </div>
-    </div>
-</header>
-    <nav class="main-navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
-                        <span class="sr-only"></span>
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <a class="navbar-brand" href="https://cc-cat.github.io">
-                        CCcat | Blog</a>
-                </div>
-                <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="menu">
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/"><i class="fa "></i>
-                                首页</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/前端/"><i class="fa "></i>
-                                前端</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/后端/"><i class="fa "></i>
-                                后端</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/工具/"><i class="fa "></i>
-                                工具</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/archives/"><i class="fa "></i>
-                                时间轴</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="（一）教你使用Hexo-Github-Pages搭建个人独立博客">
-            
-            （一）教你使用Hexo-Github-Pages搭建个人独立博客
-            
-        </h1>
-        <div class="post-meta">
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a class="tag-link" href="/tags/gitHub/" rel="tag">gitHub</a> <a class="tag-link" href="/tags/github-pages/" rel="tag">github-pages</a> <a class="tag-link" href="/tags/hexo/" rel="tag">hexo</a>
-            
-        </span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">
-            2018/12/28</span>
-    </span>
-    
-    
-</div>
-        
-        
-        <p class="fa fa-exclamation-triangle warning">
-            本文于<strong>
-                611</strong>
-            天之前发表，文中内容可能已经过时。
-        </p>
-        
-    </div>
-    
-    <div class="post-body post-content">
-        <img src="./img-1.jpg" title="封面" height="200px">
-
-<h2 id="前言"><a href="#前言" class="headerlink" title="# 前言"></a># 前言</h2><p>若您在安装过程中遇到问题或无法找到解决方式，可以在评论区提问，我会尽力帮助您解决问题！</p>
-<br />
-<a id="more"></a>
-
-<h2 id="推荐理由"><a href="#推荐理由" class="headerlink" title="# 推荐理由"></a># 推荐理由</h2><h3 id="1-免费"><a href="#1-免费" class="headerlink" title="1. 免费"></a>1. 免费</h3><p><a href="https://github.com/" target="_blank" rel="noopener" title="Github">Github</a> 提供 <a href="https://pages.github.com/" target="_blank" rel="noopener" title="GitHub Pages">GitHub Pages</a> 服务是免费的，有 300MB 的空间。<br><br /></p>
-<h3 id="2-开源"><a href="#2-开源" class="headerlink" title="2. 开源"></a>2. 开源</h3><p>由于 github 开源的原因，有很多人参与其中，自然技术支持很好。<br><br /></p>
-<h3 id="3-便捷"><a href="#3-便捷" class="headerlink" title="3. 便捷"></a>3. 便捷</h3><p>博客完全托管在 github 上，基本上不需要花时间去管理，博客使用 <a href="https://markdown-zh.readthedocs.io/en/latest/" target="_blank" rel="noopener" title="Markdown">Markdown</a> 语法，上手很容易。<br><br /></p>
-<h2 id="需要了解的内容（能掌握更好）"><a href="#需要了解的内容（能掌握更好）" class="headerlink" title="# 需要了解的内容（能掌握更好）"></a># 需要了解的内容（能掌握更好）</h2><ul>
-<li>html+css+javascript</li>
-<li>git 基本语法</li>
-<li>markdown 语法</li>
-<li>nodejs</li>
-</ul>
-<p>目前，在 github 上搭建博客系统使用最多就是 Hexo 和 Jekyll。<br><a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener" title="Hexo">Hexo</a> 是基于 Nodejs 开发的，Jekyll 是基于 Ruby 开发的。</p>
-<blockquote>
-<p>说明：<br>文中出现的命令，Windows 用户注意，命令前面有 $ 的表示在 Git Bash 中执行，没有的在 CMD 命令窗口执行。<br>Linux 和 MAC 系统在终端下不区分。</p>
-</blockquote>
-<br />
-
-<h2 id="系统环境配置"><a href="#系统环境配置" class="headerlink" title="# 系统环境配置"></a># 系统环境配置</h2><p>安装 Hexo 相当简单。然而在安装前，您必须检查电脑中是否已安装下列应用程序:</p>
-<ul>
-<li>Git</li>
-<li>Node.js</li>
-</ul>
-<br />
-
-<h2 id="安装-Git-客户端"><a href="#安装-Git-客户端" class="headerlink" title="# 安装 Git 客户端"></a># 安装 Git 客户端</h2><ul>
-<li><a href="https://git-scm.com/downloads" target="_blank" rel="noopener" title="Git">Git</a></li>
-</ul>
-<h3 id="1-下载-Git-客户端"><a href="#1-下载-Git-客户端" class="headerlink" title="1.下载 Git 客户端"></a>1.下载 Git 客户端</h3><img src="./img-2.jpg" title="封面" height="280px">
-
-<h3 id="2-安装-Git-客户端"><a href="#2-安装-Git-客户端" class="headerlink" title="2.安装 Git 客户端"></a>2.安装 Git 客户端</h3><p>Windows 用户直接 Next 就可以了。Mac 和 Linxu 系统的用户可通过命令方式安装，这里不详细介绍了。<br><br /></p>
-<h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="# 安装 Node.js"></a># 安装 Node.js</h2><ul>
-<li><a href="https://nodejs.org/en/" target="_blank" rel="noopener" title="Node.js">Node.js</a></li>
-</ul>
-<p>检查 node.js 是否安装:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">v8.6.0  (Node版本号, 已安装Node.js)</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h2 id="初探-Hexo"><a href="#初探-Hexo" class="headerlink" title="# 初探 Hexo"></a># 初探 Hexo</h2><blockquote>
-<p>以下操作是在<strong>blog</strong>文件夹中</p>
-</blockquote>
-<h3 id="1-安装-Hexo"><a href="#1-安装-Hexo" class="headerlink" title="1.安装 Hexo"></a>1.安装 Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-
-<p><span style="color:red;">说明：</span> hexo 全局安装一次就够了，后面可以直接使用 hexo 相关的操作。</p>
-<h2 id="创建本地博客文件夹"><a href="#创建本地博客文件夹" class="headerlink" title="# 创建本地博客文件夹"></a># 创建本地博客文件夹</h2><h3 id="1-初始化-hexo"><a href="#1-初始化-hexo" class="headerlink" title="1.初始化 hexo"></a>1.初始化 hexo</h3><blockquote>
-<p>文件夹名称：blog（可自定义）<br>新建一个网站。如果没有设置 blog 文件夹 ，Hexo 默认在目前的路径新建文件夹 blog，并且建立网站。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init blog</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-新建一篇文章"><a href="#2-新建一篇文章" class="headerlink" title="2.新建一篇文章"></a>2.新建一篇文章</h3><blockquote>
-<p>文章标题：title（可自定义）</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new title</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>如果标题包含空格的话，请使用引号括起来。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"First Title"</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="3-启动-Hexo"><a href="#3-启动-Hexo" class="headerlink" title="3.启动 Hexo"></a>3.启动 Hexo</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>启动之后，打开浏览器，在地址栏输入：<a href="http://localhost:4000" target="_blank" rel="noopener" title="http://localhost:4000">http://localhost:4000</a> ，你就会看到 Hexo 的示例页面。</p>
-<blockquote>
-<p>注：此时可以初始化 git 本地仓库了，或者是等本地博客搭建好之后也可以。</p>
-</blockquote>
-<br />
-
-<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><blockquote>
-<p>第一步，我们搭建了本地的 Hexo 博客，并通过 <code>http://localhost:4000</code> 访问了它。<br><strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（一）</strong><br>第二步，我们要将博客上传到 GitHub，并通过 <code>Github-Pages</code> 配置在网页上提供访问。详情请看文章：<br><strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（二）</strong><br>第三步，部署 Hexo，将 hexo 生成的静态内容部署到配置的仓库中，详情请看文章：<br><strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（三）</strong></p>
-</blockquote>
-<br />
-
-<!-- link -->
-
-
-    </div>
-    
-    <div class="post-footer">
-        <div>
-            
-            转载声明：
-            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
-            
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-<div class="article-nav prev-next-wrap clearfix">
-    
-    <a href="/create-the-blog-2/" class="pre-post btn btn-default" title='（二）教你使用Hexo-Github-Pages搭建个人独立博客'>
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            （二）教你使用Hexo-Github-Pages搭建个人独立博客</span>
-    </a>
-    
-    
-    <a href="/hello-world/" class="next-post btn btn-default" title='Hello World'>
-        <span class="hidden-lg">下一篇</span>
-        <span class="hidden-xs">
-            Hello World</span><i class="fa fa-angle-right fa-fw"></i>
-    </a>
-    
-</div>
-
-<div id="comments">
-    
-<div id="lv-container" data-id="city" data-uid="MTAyMC80Mjg1NC8xOTQwMQ==">
-    <script type="text/javascript">
-    (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-    })(document, 'script');
-    </script>
-</div>
-
-</div>
-
-                </main>
-                
-                    <aside id="article-toc" role="navigation" class="col-md-4">
-    <div class="widget">
-        <h3 class="title">
-            文章目录
-        </h3>
-        
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text"># 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐理由"><span class="toc-text"># 推荐理由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-免费"><span class="toc-text">1. 免费</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-开源"><span class="toc-text">2. 开源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-便捷"><span class="toc-text">3. 便捷</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需要了解的内容（能掌握更好）"><span class="toc-text"># 需要了解的内容（能掌握更好）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统环境配置"><span class="toc-text"># 系统环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Git-客户端"><span class="toc-text"># 安装 Git 客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-下载-Git-客户端"><span class="toc-text">1.下载 Git 客户端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-安装-Git-客户端"><span class="toc-text">2.安装 Git 客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Node-js"><span class="toc-text"># 安装 Node.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初探-Hexo"><span class="toc-text"># 初探 Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-安装-Hexo"><span class="toc-text">1.安装 Hexo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建本地博客文件夹"><span class="toc-text"># 创建本地博客文件夹</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-初始化-hexo"><span class="toc-text">1.初始化 hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新建一篇文章"><span class="toc-text">2.新建一篇文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-启动-Hexo"><span class="toc-text">3.启动 Hexo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
-        
-    </div>
-</aside>
-                
-            </div>
-        </div>
-    </section>
-    <footer class="main-footer">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</footer>
-<a id="back-to-top" class="icon-btn hide">
-    <i class="fa fa-chevron-up"></i>
-</a>
-    <div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="busuanzi">
-    
-</div>
-            </div>
-            <div class="col-sm-12">
-                <span>Copyright &copy;
-                    2018
-                    
-                </span> |
-                <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
-                </span> |
-                <span>
-                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<script src="/js/app.js?rev=@@hash.js"></script>
-
-</body>
-</html>
+        return <html lang={language ? language.substr(0, 2) : ''}>
+            <Head site={site} config={config} helper={helper} page={page} />
+            <body class={`is-${columnCount}-column`}>
+                <Navbar config={config} helper={helper} page={page} />
+                <section class="section">
+                    <div class="container">
+                        <div class="columns">
+                            <div class={classname({
+                                column: true,
+                                'order-2': true,
+                                'column-main': true,
+                                'is-12': columnCount === 1,
+                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
+                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
+                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
+                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
+                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
+                        </div>
+                    </div>
+                </section>
+                <Footer config={config} helper={helper} />
+                <Scripts site={site} config={config} helper={helper} page={page} />
+                <Search config={config} helper={helper} />
+            </body>
+        </html>;
+    }
+};

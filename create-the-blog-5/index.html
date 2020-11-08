@@ -1,361 +1,43 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
+const { Component } = require('inferno');
+const classname = require('hexo-component-inferno/lib/util/classname');
+const Head = require('./common/head');
+const Navbar = require('./common/navbar');
+const Widgets = require('./common/widgets');
+const Footer = require('./common/footer');
+const Scripts = require('./common/scripts');
+const Search = require('./common/search');
 
-<head>
-    <!--Setting-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="CCcat | Blog">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    <meta name="browsermode" content="application">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="theme-version" content="1.2.3">
-    <meta name="root" content="/">
-    <link rel="dns-prefetch" href="https://cc-cat.github.io">
-    <!--SEO-->
+module.exports = class extends Component {
+    render() {
+        const { site, config, page, helper, body } = this.props;
 
-<meta name="keywords" content="hexo,theme" />
+        const language = page.lang || page.language || config.language;
+        const columnCount = Widgets.getColumnCount(config.widgets);
 
-
-<meta name="description" content="
-
-Hexo 给我们提供了很多的主题供我们选择，你可以在 更多主题 里选择一款你喜欢的。
-
-
-
-# 主题介绍Snippet 简洁而不简单，也许是一款你寻找已久的 hexo 主题。
-主题名称：he..." />
-
-
-<meta name="robots" content="all" />
-<meta name="google" content="all" />
-<meta name="googlebot" content="all" />
-<meta name="verify" content="all" />
-    <!--Title-->
-
-<title>
-    
-    Hexo 更换主题风格 之 hexo-theme-snippet |
-    
-    CCcat | Blog
-</title>
-
-<link rel="alternate" href="/atom.xml" title="CCcat | Blog" type="application/atom+xml">
-
-
-<link rel="icon" href="/favicon.ico">
-
-    
-
-
-<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
-<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
-<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
-
-    
-
-
-
-    
-
-<meta name="generator" content="Hexo 4.2.1"></head>
-<!--[if lte IE 8]>
-<style>
-    html{ font-size: 1em }
-</style>
-<![endif]-->
-<!--[if lte IE 9]>
-<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
-<![endif]-->
-<body>
-    <header class="main-header"  style="background-image:url(
-    /img/banner.jpg)"
-     >
-    <div class="main-header-box">
-        <a class="header-avatar" href="/" title='CCcat'>
-            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
-        </a>
-        <div class="branding">
-            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
-            
-            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
-            
-        </div>
-    </div>
-</header>
-    <nav class="main-navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
-                        <span class="sr-only"></span>
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <a class="navbar-brand" href="https://cc-cat.github.io">
-                        CCcat | Blog</a>
-                </div>
-                <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="menu">
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/"><i class="fa "></i>
-                                首页</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/前端/"><i class="fa "></i>
-                                前端</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/后端/"><i class="fa "></i>
-                                后端</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/工具/"><i class="fa "></i>
-                                工具</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/archives/"><i class="fa "></i>
-                                时间轴</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="Hexo 更换主题风格 之 hexo-theme-snippet">
-            
-            Hexo 更换主题风格 之 hexo-theme-snippet
-            
-        </h1>
-        <div class="post-meta">
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a class="tag-link" href="/tags/hexo/" rel="tag">hexo</a> <a class="tag-link" href="/tags/theme/" rel="tag">theme</a>
-            
-        </span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">
-            2019/02/17</span>
-    </span>
-    
-    
-</div>
-        
-        
-        <p class="fa fa-exclamation-triangle warning">
-            本文于<strong>
-                560</strong>
-            天之前发表，文中内容可能已经过时。
-        </p>
-        
-    </div>
-    
-    <div class="post-body post-content">
-        <img src="./img-1.jpg" title="封面" height="200px">
-
-<p>Hexo 给我们提供了很多的主题供我们选择，你可以在 <a href="https://hexo.io/themes/" target="_blank" rel="noopener" title="https://hexo.io/themes/">更多主题</a> 里选择一款你喜欢的。</p>
-<a id="more"></a>
-<br />
-
-<h2 id="主题介绍"><a href="#主题介绍" class="headerlink" title="# 主题介绍"></a># 主题介绍</h2><p>Snippet 简洁而不简单，也许是一款你寻找已久的 hexo 主题。</p>
-<p>主题名称：hexo-theme-snippet</p>
-<p>主题简称：Snippet</p>
-<p>主题特点：</p>
-<ul>
-<li>原生 JavaScript 实现</li>
-<li>样式支持 CSS 预处理器 Less，方便主题自定义</li>
-<li>文章过期提醒功能</li>
-<li>文章阅读进度条</li>
-<li>网站公告功能</li>
-<li>首页图片懒加载</li>
-<li>首页文章缩略图自动检索文章内图片，支持自动随机图片</li>
-<li>主题支持响应式</li>
-<li>支持 3D 云标签</li>
-<li>支持文章推送和文章打赏</li>
-<li>站内本地搜索和谷歌搜索</li>
-<li>支持多个第三方评论系统</li>
-<li>支持网站统计和不蒜子访客统计</li>
-<li>移动端的简洁设计</li>
-<li>支持代码高亮并支持自定义高亮样式</li>
-<li>支持 Shell 脚本一键使用 Travis CI 自动化部署博客</li>
-</ul>
-<br />
-
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="# 步骤"></a># 步骤</h2><h3 id="1-copy-主题"><a href="#1-copy-主题" class="headerlink" title="1.copy 主题"></a>1.copy 主题</h3><p>打开主题链接 <a href="https://github.com/shenliyang/hexo-theme-snippet" target="_blank" rel="noopener" title="hexo-themes-link">https://github.com/shenliyang/hexo-theme-snippet</a>，并复制主题 Git 地址。</p>
-<img src="./img-2.jpg" title="封面" height="280px">
-
-<br />
-
-<h3 id="2-开始下载主题"><a href="#2-开始下载主题" class="headerlink" title="2.开始下载主题"></a>2.开始下载主题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="string">'to/your/path'</span> <span class="comment">#项目放置的路径</span></span><br><span class="line"></span><br><span class="line">$ hexo clean <span class="comment">#清除</span></span><br><span class="line"></span><br><span class="line">$ git <span class="built_in">clone</span> git://github.com/shenliyang/hexo-theme-snippet.git themes/hexo-theme-snippet <span class="comment">#复制Git地址，放在themes文件夹下</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>主题可能会不定时优化和更新，更新主题代码:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/hexo-theme-snippet</span><br><span class="line"></span><br><span class="line">$ git pull <span class="comment">#主题拉取更新</span></span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h3 id="3-修改主题名称"><a href="#3-修改主题名称" class="headerlink" title="3.修改主题名称"></a>3.修改主题名称</h3><p>修改根目录下的 <code>_config.yml</code> 文件，修改主题名称。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: hexo-theme-snippet <span class="comment">#主题名称 要与 主题文件夹名称一致</span></span><br></pre></td></tr></table></figure>
-
-<p>图示：<br><img src="./img-3.jpg" title="封面" height="280px"></p>
-<br />
-
-<h3 id="4-添加主题插件"><a href="#4-添加主题插件" class="headerlink" title="4.添加主题插件"></a>4.添加主题插件</h3><p>这个根据不同主题的安装要求下载！</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ../../ <span class="comment">#回到你的博客文件根目录</span></span><br><span class="line"></span><br><span class="line">$ npm i hexo-renderer-ejs hexo-renderer-less hexo-deployer-git -S</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h3 id="5-运行博客"><a href="#5-运行博客" class="headerlink" title="5.运行博客"></a>5.运行博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo s -g <span class="comment"># 就是清除、生成、启动</span></span><br></pre></td></tr></table></figure>
-
-<p>启动之后，打开浏览器，在地址栏输入：<a href="http://localhost:4000" target="_blank" rel="noopener" title="http://localhost:4000">http://localhost:4000</a> ，你就会看到 Hexo 的示例页面。</p>
-<p>图示：<br><img src="./img-4.jpg" title="封面" height="280px"></p>
-<br />
-
-<h3 id="6-发布博客"><a href="#6-发布博客" class="headerlink" title="6.发布博客"></a>6.发布博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean &amp;&amp; hexo d -g <span class="comment"># 就是清除、生成、部署</span></span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><p>到这里，文章就结束啦！(∩_∩)</p>
-<br />
-
-<!-- link -->
-
-
-    </div>
-    
-    <div class="post-footer">
-        <div>
-            
-            转载声明：
-            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
-            
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-<div class="article-nav prev-next-wrap clearfix">
-    
-    <a href="/create-vue-admin-template/" class="pre-post btn btn-default" title='Vue后台集成方案 之 基础模板'>
-        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-        <span class="hidden-xs">
-            Vue后台集成方案 之 基础模板</span>
-    </a>
-    
-    
-    <a href="/vue-project/" class="next-post btn btn-default" title='vue从0到1：vue + webpack + element-ui + axios 项目搭建'>
-        <span class="hidden-lg">下一篇</span>
-        <span class="hidden-xs">
-            vue从0到1：vue + webpack + element-ui + axios 项目搭建</span><i class="fa fa-angle-right fa-fw"></i>
-    </a>
-    
-</div>
-
-<div id="comments">
-    
-<div id="lv-container" data-id="city" data-uid="MTAyMC80Mjg1NC8xOTQwMQ==">
-    <script type="text/javascript">
-    (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-    })(document, 'script');
-    </script>
-</div>
-
-</div>
-
-                </main>
-                
-                    <aside id="article-toc" role="navigation" class="col-md-4">
-    <div class="widget">
-        <h3 class="title">
-            文章目录
-        </h3>
-        
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#主题介绍"><span class="toc-text"># 主题介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-text"># 步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-copy-主题"><span class="toc-text">1.copy 主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-开始下载主题"><span class="toc-text">2.开始下载主题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-修改主题名称"><span class="toc-text">3.修改主题名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-添加主题插件"><span class="toc-text">4.添加主题插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-运行博客"><span class="toc-text">5.运行博客</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-发布博客"><span class="toc-text">6.发布博客</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-text"># 结语</span></a></li></ol>
-        
-    </div>
-</aside>
-                
-            </div>
-        </div>
-    </section>
-    <footer class="main-footer">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</footer>
-<a id="back-to-top" class="icon-btn hide">
-    <i class="fa fa-chevron-up"></i>
-</a>
-    <div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="busuanzi">
-    
-</div>
-            </div>
-            <div class="col-sm-12">
-                <span>Copyright &copy;
-                    2018
-                    
-                </span> |
-                <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
-                </span> |
-                <span>
-                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<script src="/js/app.js?rev=@@hash.js"></script>
-
-</body>
-</html>
+        return <html lang={language ? language.substr(0, 2) : ''}>
+            <Head site={site} config={config} helper={helper} page={page} />
+            <body class={`is-${columnCount}-column`}>
+                <Navbar config={config} helper={helper} page={page} />
+                <section class="section">
+                    <div class="container">
+                        <div class="columns">
+                            <div class={classname({
+                                column: true,
+                                'order-2': true,
+                                'column-main': true,
+                                'is-12': columnCount === 1,
+                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
+                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
+                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
+                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
+                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
+                        </div>
+                    </div>
+                </section>
+                <Footer config={config} helper={helper} />
+                <Scripts site={site} config={config} helper={helper} page={page} />
+                <Search config={config} helper={helper} />
+            </body>
+        </html>;
+    }
+};

@@ -1,331 +1,43 @@
-<!DOCTYPE HTML>
-<html lang="zh-CN">
+const { Component } = require('inferno');
+const classname = require('hexo-component-inferno/lib/util/classname');
+const Head = require('./common/head');
+const Navbar = require('./common/navbar');
+const Widgets = require('./common/widgets');
+const Footer = require('./common/footer');
+const Scripts = require('./common/scripts');
+const Search = require('./common/search');
 
-<head>
-    <!--Setting-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Cache-Control" content="no-siteapp">
-    <meta http-equiv="Cache-Control" content="no-transform">
-    <meta name="renderer" content="webkit|ie-comp|ie-stand">
-    <meta name="apple-mobile-web-app-capable" content="CCcat | Blog">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no,email=no,adress=no">
-    <meta name="browsermode" content="application">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="theme-version" content="1.2.3">
-    <meta name="root" content="/">
-    <link rel="dns-prefetch" href="https://cc-cat.github.io">
-    <!--SEO-->
+module.exports = class extends Component {
+    render() {
+        const { site, config, page, helper, body } = this.props;
 
-<meta name="keywords" content="跨域通讯,postMessage" />
+        const language = page.lang || page.language || config.language;
+        const columnCount = Widgets.getColumnCount(config.widgets);
 
-
-<meta name="description" content="
-
-
-
-
-window.postMessage() 方法可以安全地实现跨源通信。
-
-
-
-# 父子通信跨域1.子向父通信child.html
-123window.parent.postMessag..." />
-
-
-<meta name="robots" content="all" />
-<meta name="google" content="all" />
-<meta name="googlebot" content="all" />
-<meta name="verify" content="all" />
-    <!--Title-->
-
-<title>
-    
-    html5 postMessage解决跨域、跨窗口消息传递 |
-    
-    CCcat | Blog
-</title>
-
-<link rel="alternate" href="/atom.xml" title="CCcat | Blog" type="application/atom+xml">
-
-
-<link rel="icon" href="/favicon.ico">
-
-    
-
-
-<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
-<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
-<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
-
-    
-
-
-
-    
-
-<meta name="generator" content="Hexo 4.2.1"></head>
-<!--[if lte IE 8]>
-<style>
-    html{ font-size: 1em }
-</style>
-<![endif]-->
-<!--[if lte IE 9]>
-<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
-<![endif]-->
-<body>
-    <header class="main-header"  style="background-image:url(
-    /img/banner.jpg)"
-     >
-    <div class="main-header-box">
-        <a class="header-avatar" href="/" title='CCcat'>
-            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
-        </a>
-        <div class="branding">
-            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
-            
-            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
-            
-        </div>
-    </div>
-</header>
-    <nav class="main-navigation">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
-                        <span class="sr-only"></span>
-                        <i class="fa fa-bars"></i>
-                    </span>
-                    <a class="navbar-brand" href="https://cc-cat.github.io">
-                        CCcat | Blog</a>
-                </div>
-                <div class="collapse navbar-collapse" id="main-menu">
-                    <ul class="menu">
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/"><i class="fa "></i>
-                                首页</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/前端/"><i class="fa "></i>
-                                前端</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/后端/"><i class="fa "></i>
-                                后端</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/categories/工具/"><i class="fa "></i>
-                                工具</a>
-                        </li>
-                        
-                        <li role="presentation" class="text-center">
-                            <a href="/archives/"><i class="fa "></i>
-                                时间轴</a>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-    <section class="content-wrap">
-        <div class="container">
-            <div class="row">
-                <main class="col-md-8 main-content m-post">
-                    <p id="process"></p>
-<article class="post">
-    <div class="post-head">
-        <h1 id="html5 postMessage解决跨域、跨窗口消息传递">
-            
-            html5 postMessage解决跨域、跨窗口消息传递
-            
-        </h1>
-        <div class="post-meta">
-    
-    <span class="categories-meta fa-wrap">
-        <i class="fa fa-folder-open-o"></i>
-        <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-    </span>
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-tags"></i>
-        <span class="tags-meta">
-            
-            <a class="tag-link" href="/tags/postMessage/" rel="tag">postMessage</a> <a class="tag-link" href="/tags/%E8%B7%A8%E5%9F%9F%E9%80%9A%E8%AE%AF/" rel="tag">跨域通讯</a>
-            
-        </span>
-    </span>
-    
-    
-    
-    <span class="fa-wrap">
-        <i class="fa fa-clock-o"></i>
-        <span class="date-meta">
-            2019/05/15</span>
-    </span>
-    
-    
-</div>
-        
-        
-        <p class="fa fa-exclamation-triangle warning">
-            本文于<strong>
-                473</strong>
-            天之前发表，文中内容可能已经过时。
-        </p>
-        
-    </div>
-    
-    <div class="post-body post-content">
-        <img src="./img-1.jpg" title="封面" height="200px" />
-
-<a id="more"></a>
-
-<blockquote>
-<p>window.postMessage() 方法可以安全地实现跨源通信。</p>
-</blockquote>
-<br/>
-
-<h2 id="父子通信跨域"><a href="#父子通信跨域" class="headerlink" title="# 父子通信跨域"></a># 父子通信跨域</h2><h3 id="1-子向父通信"><a href="#1-子向父通信" class="headerlink" title="1.子向父通信"></a>1.子向父通信</h3><p>child.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.parent.postMessage(&#123;</span><br><span class="line">    msg:<span class="string">"xxx"</span></span><br><span class="line">&#125;,<span class="string">'*'</span>);</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<p>parent.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'message'</span>,<span class="keyword">function</span>(e)&#123;</span><br><span class="line">console.log(e.data);</span><br><span class="line"><span class="keyword">if</span>(e.data.msg===<span class="string">'xxx'</span>)&#123;</span><br><span class="line">        //一些自己的业务逻辑</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h3 id="2-父向子通信"><a href="#2-父向子通信" class="headerlink" title="2.父向子通信"></a>2.父向子通信</h3><p>parent.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var myframe = document.getElementById(<span class="string">'myframe'</span>);//获取iframe</span><br><span class="line">myframe.contentWindow.postMessage(&#123;data:<span class="string">'parent'</span>&#125;,childDomain);//childDomain是子页面的源（协议+主机+端口号）</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<p>child.html</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'message'</span>, <span class="keyword">function</span>(e)&#123;</span><br><span class="line">    console.log(e.data.data);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<blockquote>
-<p>注意： 1.子向父，子 postMessage,父监听 message; 2.父向子，父 postMessage,子监听 message; 3.测试发现，子向父 postMessage 的时候，源可以写为‘*’，父向子 postMessage 的时候，源需要写成子的源，(也就是子页面的协议+主机号+端口)</p>
-</blockquote>
-<br />
-
-<h2 id="测试代码部分"><a href="#测试代码部分" class="headerlink" title="# 测试代码部分"></a># 测试代码部分</h2><h3 id="向下-postMessage"><a href="#向下-postMessage" class="headerlink" title="* 向下 postMessage"></a>* 向下 postMessage</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var postMessage = <span class="keyword">function</span>(id, msg, d) &#123;</span><br><span class="line">    /**</span><br><span class="line">     *  data 可以自定义为 object 或者 string</span><br><span class="line">     *  data 为 object</span><br><span class="line">    */</span><br><span class="line">    var data = &#123;&#125;;</span><br><span class="line">    data.identify = id;</span><br><span class="line">    data.msg = msg;</span><br><span class="line">    data.data = d;</span><br><span class="line">    gameFrame.contentWindow.postMessage(data, <span class="string">"*"</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h3 id="向上-postMessage"><a href="#向上-postMessage" class="headerlink" title="* 向上 postMessage"></a>* 向上 postMessage</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var chatReport = <span class="keyword">function</span>(data) &#123;</span><br><span class="line">    /* data 为 string */</span><br><span class="line">    parent.window.postMessage(data, <span class="string">"*"</span>)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<br />
-
-<h3 id="监听-Message（通用）"><a href="#监听-Message（通用）" class="headerlink" title="* 监听 Message（通用）"></a>* 监听 Message（通用）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.addEventListener(<span class="string">'message'</span>, <span class="keyword">function</span>(e)&#123;</span><br><span class="line">    console.log(e.data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-    </div>
-    
-    <div class="post-footer">
-        <div>
-            
-            转载声明：
-            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
-            
-            
-        </div>
-        <div>
-            
-        </div>
-    </div>
-</article>
-<div class="article-nav prev-next-wrap clearfix">
-    
-    
-    <a href="/create-vue-admin-template/" class="next-post btn btn-default" title='Vue后台集成方案 之 基础模板'>
-        <span class="hidden-lg">下一篇</span>
-        <span class="hidden-xs">
-            Vue后台集成方案 之 基础模板</span><i class="fa fa-angle-right fa-fw"></i>
-    </a>
-    
-</div>
-
-<div id="comments">
-    
-<div id="lv-container" data-id="city" data-uid="MTAyMC80Mjg1NC8xOTQwMQ==">
-    <script type="text/javascript">
-    (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-    })(document, 'script');
-    </script>
-</div>
-
-</div>
-
-                </main>
-                
-                    <aside id="article-toc" role="navigation" class="col-md-4">
-    <div class="widget">
-        <h3 class="title">
-            文章目录
-        </h3>
-        
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#父子通信跨域"><span class="toc-text"># 父子通信跨域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-子向父通信"><span class="toc-text">1.子向父通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-父向子通信"><span class="toc-text">2.父向子通信</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试代码部分"><span class="toc-text"># 测试代码部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#向下-postMessage"><span class="toc-text">* 向下 postMessage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#向上-postMessage"><span class="toc-text">* 向上 postMessage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听-Message（通用）"><span class="toc-text">* 监听 Message（通用）</span></a></li></ol></li></ol>
-        
-    </div>
-</aside>
-                
-            </div>
-        </div>
-    </section>
-    <footer class="main-footer">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-</footer>
-<a id="back-to-top" class="icon-btn hide">
-    <i class="fa fa-chevron-up"></i>
-</a>
-    <div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="busuanzi">
-    
-</div>
-            </div>
-            <div class="col-sm-12">
-                <span>Copyright &copy;
-                    2018
-                    
-                </span> |
-                <span>
-                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
-                </span> |
-                <span>
-                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<script src="/js/app.js?rev=@@hash.js"></script>
-
-</body>
-</html>
+        return <html lang={language ? language.substr(0, 2) : ''}>
+            <Head site={site} config={config} helper={helper} page={page} />
+            <body class={`is-${columnCount}-column`}>
+                <Navbar config={config} helper={helper} page={page} />
+                <section class="section">
+                    <div class="container">
+                        <div class="columns">
+                            <div class={classname({
+                                column: true,
+                                'order-2': true,
+                                'column-main': true,
+                                'is-12': columnCount === 1,
+                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
+                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
+                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
+                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
+                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
+                        </div>
+                    </div>
+                </section>
+                <Footer config={config} helper={helper} />
+                <Scripts site={site} config={config} helper={helper} page={page} />
+                <Search config={config} helper={helper} />
+            </body>
+        </html>;
+    }
+};
