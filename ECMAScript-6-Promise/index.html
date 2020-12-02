@@ -1,43 +1,104 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>ECMAScript 6 - Promise对象 - CCcat | Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="CCcat | Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CCcat | Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="# Promise 含义Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。 它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象。 Promise对象有以下两个特点。"><meta property="og:type" content="blog"><meta property="og:title" content="ECMAScript 6 - Promise对象"><meta property="og:url" content="https://cc-cat.github.io/ECMAScript-6-Promise/"><meta property="og:site_name" content="CCcat | Blog"><meta property="og:description" content="# Promise 含义Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。 它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象。 Promise对象有以下两个特点。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-1.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-1.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-2.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-2.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-4.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-4.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-3.jpg"><meta property="og:image" content="https://cc-cat.github.io/ECMAScript-6-Promise/img-3.jpg"><meta property="article:published_time" content="2019-02-12T08:59:05.000Z"><meta property="article:modified_time" content="2020-12-02T09:47:31.533Z"><meta property="article:author" content="CCcat"><meta property="article:tag" content="es6"><meta property="article:tag" content="promise"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/ECMAScript-6-Promise/img-1.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cc-cat.github.io/ECMAScript-6-Promise/"},"headline":"CCcat | Blog","image":["https://cc-cat.github.io/ECMAScript-6-Promise/img-1.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-1.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-2.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-2.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-4.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-4.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-3.jpg","https://cc-cat.github.io/ECMAScript-6-Promise/img-3.jpg"],"datePublished":"2019-02-12T08:59:05.000Z","dateModified":"2020-12-02T09:47:31.533Z","author":{"@type":"Person","name":"CCcat"},"description":"# Promise 含义Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。 它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象。 Promise对象有以下两个特点。"}</script><link rel="canonical" href="https://cc-cat.github.io/ECMAScript-6-Promise/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">CCcat | Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-02-12T08:59:05.000Z" title="2019-02-12T08:59:05.000Z">2019-02-12</time>发表</span><span class="level-item"><time dateTime="2020-12-02T09:47:31.533Z" title="2020-12-02T09:47:31.533Z">2020-12-02</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><span class="level-item">6 分钟读完 (大约887个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">ECMAScript 6 - Promise对象</h1><div class="content"><img src="/ECMAScript-6-Promise/img-1.jpg" class="" title="封面">
+<!-- <img src="./img-1.jpg" title="封面" height="200px"> -->
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+<h2 id="Promise-含义"><a href="#Promise-含义" class="headerlink" title="# Promise 含义"></a># Promise 含义</h2><p><strong>Promise</strong> 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。</p>
+<p>它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了<strong>Promise</strong>对象。</p>
+<p><strong>Promise</strong>对象有以下两个特点。</p>
+<a id="more"></a>
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets);
+<p>（1）对象的状态不受外界影响。Promise 对象代表一个异步操作，有三种状态：<strong>pending</strong>（进行中）、<strong>fulfilled</strong>（已成功）和 <strong>rejected</strong>（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是 Promise 这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
+<p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。Promise 对象的状态改变，只有两种可能：从 pending 变为 fulfilled 和从 pending 变为 rejected。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果，这时就称为 resolved（已定型）。如果改变已经发生了，你再对 Promise 对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a target="_blank" rel="noopener" href="http://es6.ruanyifeng.com/#docs/promise">http://es6.ruanyifeng.com/#docs/promise</a></p>
+<br />
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="# 基本用法"></a># 基本用法</h2><p>ES6 规定，<strong>Promise</strong>对象是一个构造函数，用来生成 Promise 实例。</p>
+<p>下面代码创造了一个 Promise 实例。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise(<span class="keyword">function</span>(resolve, reject) &#123;</span><br><span class="line">  // ... some code</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (/* 异步操作成功 */)&#123;</span><br><span class="line">    resolve(value);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    reject(error);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>Promise</strong>构造函数接受一个函数作为参数，该函数的两个参数分别是<strong>resolve</strong>和<strong>reject</strong>。它们是两个函数，由 JavaScript 引擎提供，不用自己部署。</p>
+<p><strong>resolve</strong>函数的作用是，将 Promise 对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去。</p>
+<p><strong>reject</strong>函数的作用是，将 Promise 对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+<p><strong>Promise</strong>实例生成以后，可以用 then 方法分别指定 resolved 状态和 rejected 状态的回调函数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">promise.then(<span class="keyword">function</span>(value) &#123;</span><br><span class="line">  // success</span><br><span class="line">&#125;, <span class="keyword">function</span>(error) &#123;</span><br><span class="line">  // failure</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>then</strong>方法可以接受两个回调函数作为参数。<br>第一个回调函数是 Promise 对象的状态变为 resolved 时调用，第二个回调函数是 Promise 对象的状态变为 rejected 时调用。<br>其中，第二个函数是可选的，不一定要提供。这两个函数都接受 Promise 对象传出的值作为参数。</p>
+<p>图示：</p>
+<p><img src="img-2.jpg" alt=""></p>
+<!-- <img src="./img-2.jpg" title="封面" height="160px"> -->
+
+<br />
+
+<h2 id="例子"><a href="#例子" class="headerlink" title="# 例子"></a># 例子</h2><ul>
+<li><code>效果图</code> ：</li>
+</ul>
+<p><img src="img-4.jpg" alt=""></p>
+<!-- <img src="./img-4.jpg" title="封面" height="160px"> -->
+
+<ul>
+<li><code>index.html</code> 文件：<br><a target="_blank" rel="noopener" href="https://jsbin.com/gamewasari/edit?html,console,output">https://jsbin.com/gamewasari/edit?html,console,output</a></li>
+</ul>
+<p><img src="img-3.jpg" alt=""></p>
+<!-- <img src="./img-3.jpg" title="封面" height="160px"> -->
+
+<br />
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><p>以上是我总结的一个简单的异步执行回调方法，有问题可以留言。<br>(∩_∩)</p>
+<br />
+
+<!-- link -->
+
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/es6/">es6</a><a class="link-muted mr-2" rel="tag" href="/tags/promise/">promise</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/vue-project/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">vue从0到1：vue + webpack + element-ui + axios 项目搭建</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/use-websocket-chat/"><span class="level-item">使用socket.io和node.js搭建websocket应用</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://cc-cat.github.io/ECMAScript-6-Promise/';
+            this.page.identifier = 'ECMAScript-6-Promise/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'cccat-blog' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="CCcat"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">CCcat</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>BeiJing</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">15</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/CC-cat" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/CC-cat"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="http://www.ruanyifeng.com/blog/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">阮一峰</span></span><span class="level-right"><span class="level-item tag">www.ruanyifeng.com</span></span></a></li><li><a class="level is-mobile" href="https://fan-yin.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Aamen</span></span><span class="level-right"><span class="level-item tag">fan-yin.com</span></span></a></li><li><a class="level is-mobile" href="http://jian-yin.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">辉儿</span></span><span class="level-right"><span class="level-item tag">jian-yin.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Vue%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88-%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF/"><span class="tag">Vue后台集成方案(基础模板)</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/element-ui/"><span class="tag">element-ui</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gitHub/"><span class="tag">gitHub</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github-pages/"><span class="tag">github-pages</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hello-world/"><span class="tag">hello-world</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/postMessage/"><span class="tag">postMessage</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/promise/"><span class="tag">promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/theme/"><span class="tag">theme</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vue/"><span class="tag">vue</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vue-admin-template/"><span class="tag">vue-admin-template</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack/"><span class="tag">webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/websocket/"><span class="tag">websocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%A8%E5%9F%9F%E9%80%9A%E8%AE%AF/"><span class="tag">跨域通讯</span><span class="tag">1</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Promise-含义"><span class="level-left"><span class="level-item">1</span><span class="level-item"># Promise 含义</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#参考链接"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">参考链接</span></span></a></li></ul></li><li><a class="level is-mobile" href="#基本用法"><span class="level-left"><span class="level-item">2</span><span class="level-item"># 基本用法</span></span></a></li><li><a class="level is-mobile" href="#例子"><span class="level-left"><span class="level-item">3</span><span class="level-item"># 例子</span></span></a></li><li><a class="level is-mobile" href="#结语"><span class="level-left"><span class="level-item">4</span><span class="level-item"># 结语</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-05-15T06:00:36.000Z">2019-05-15</time></p><p class="title"><a href="/h5-postMessage/">html5 postMessage解决跨域、跨窗口消息传递</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-28T04:08:49.000Z">2019-02-28</time></p><p class="title"><a href="/create-vue-admin-template/">Vue后台集成方案 之 基础模板</a></p><p class="categories"><a href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-17T06:10:04.000Z">2019-02-17</time></p><p class="title"><a href="/create-the-blog-5/">Hexo 更换主题风格 之 hexo-theme-snippet</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-15T05:05:37.000Z">2019-02-15</time></p><p class="title"><a href="/vue-project/">vue从0到1：vue + webpack + element-ui + axios 项目搭建</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-12T08:59:05.000Z">2019-02-12</time></p><p class="title"><a href="/ECMAScript-6-Promise/">ECMAScript 6 - Promise对象</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">前端</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="level-start"><span class="level-item">后端</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">CCcat | Blog</a><p class="is-size-7"><span>&copy; 2020 CCcat</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

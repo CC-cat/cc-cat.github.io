@@ -1,43 +1,157 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>（二）教你使用Hexo-Github-Pages搭建个人独立博客 - CCcat | Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="CCcat | Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CCcat | Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="# 注册 GitHub 老手和已注册过的用户略过，直接进行下一步  1.打开 GitHub 官网GitHub 官网:https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;"><meta property="og:type" content="blog"><meta property="og:title" content="（二）教你使用Hexo-Github-Pages搭建个人独立博客"><meta property="og:url" content="https://cc-cat.github.io/create-the-blog-2/"><meta property="og:site_name" content="CCcat | Blog"><meta property="og:description" content="# 注册 GitHub 老手和已注册过的用户略过，直接进行下一步  1.打开 GitHub 官网GitHub 官网:https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-1.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-2.jpg"><meta property="og:image" content="https://cc-cat.github.io/img-2.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-3.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-3.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-4.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-4.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-5.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-5.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-6.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-6.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-7.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-7.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-8.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-8.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-9.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-10.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-9.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-10.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-11.jpg"><meta property="og:image" content="https://cc-cat.github.io/create-the-blog-2/img-11.jpg"><meta property="article:published_time" content="2018-12-28T16:04:05.000Z"><meta property="article:modified_time" content="2020-12-02T09:47:17.994Z"><meta property="article:author" content="CCcat"><meta property="article:tag" content="hexo"><meta property="article:tag" content="gitHub"><meta property="article:tag" content="github-pages"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/create-the-blog-2/img-1.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cc-cat.github.io/create-the-blog-2/"},"headline":"CCcat | Blog","image":["https://cc-cat.github.io/create-the-blog-2/img-1.jpg","https://cc-cat.github.io/create-the-blog-2/img-2.jpg","https://cc-cat.github.io/img-2.jpg","https://cc-cat.github.io/create-the-blog-2/img-3.jpg","https://cc-cat.github.io/create-the-blog-2/img-3.jpg","https://cc-cat.github.io/create-the-blog-2/img-4.jpg","https://cc-cat.github.io/create-the-blog-2/img-4.jpg","https://cc-cat.github.io/create-the-blog-2/img-5.jpg","https://cc-cat.github.io/create-the-blog-2/img-5.jpg","https://cc-cat.github.io/create-the-blog-2/img-6.jpg","https://cc-cat.github.io/create-the-blog-2/img-6.jpg","https://cc-cat.github.io/create-the-blog-2/img-7.jpg","https://cc-cat.github.io/create-the-blog-2/img-7.jpg","https://cc-cat.github.io/create-the-blog-2/img-8.jpg","https://cc-cat.github.io/create-the-blog-2/img-8.jpg","https://cc-cat.github.io/create-the-blog-2/img-9.jpg","https://cc-cat.github.io/create-the-blog-2/img-10.jpg","https://cc-cat.github.io/create-the-blog-2/img-9.jpg","https://cc-cat.github.io/create-the-blog-2/img-10.jpg","https://cc-cat.github.io/create-the-blog-2/img-11.jpg","https://cc-cat.github.io/create-the-blog-2/img-11.jpg"],"datePublished":"2018-12-28T16:04:05.000Z","dateModified":"2020-12-02T09:47:17.994Z","author":{"@type":"Person","name":"CCcat"},"description":"# 注册 GitHub 老手和已注册过的用户略过，直接进行下一步  1.打开 GitHub 官网GitHub 官网:https:&#x2F;&#x2F;github.com&#x2F;"}</script><link rel="canonical" href="https://cc-cat.github.io/create-the-blog-2/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">CCcat | Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2018-12-28T16:04:05.000Z" title="2018-12-28T16:04:05.000Z">2018-12-29</time>发表</span><span class="level-item"><time dateTime="2020-12-02T09:47:17.994Z" title="2020-12-02T09:47:17.994Z">2020-12-02</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span><span class="level-item">7 分钟读完 (大约1092个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">（二）教你使用Hexo-Github-Pages搭建个人独立博客</h1><div class="content"><img src="/create-the-blog-2/img-1.jpg" class="" title="封面">
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+<h2 id="注册-GitHub"><a href="#注册-GitHub" class="headerlink" title="# 注册 GitHub"></a># 注册 GitHub</h2><blockquote>
+<p>老手和已注册过的用户略过，直接进行下一步</p>
+</blockquote>
+<h3 id="1-打开-GitHub-官网"><a href="#1-打开-GitHub-官网" class="headerlink" title="1.打开 GitHub 官网"></a>1.打开 GitHub 官网</h3><p>GitHub 官网:<a target="_blank" rel="noopener" href="https://github.com/" title="Github">https://github.com/</a></p>
+<br />
+<a id="more"></a>
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets);
+<h3 id="2-填写注册信息进行注册操作"><a href="#2-填写注册信息进行注册操作" class="headerlink" title="2.填写注册信息进行注册操作"></a>2.填写注册信息进行注册操作</h3><p>没有登录的用户打开网站首页就会显示注册的操作（如下图所示），或者是点击<strong>Sign up</strong>按钮进入注册详情页。<br><img src="img-2.jpg" alt=""></p>
+<!-- <img src="/img-2.jpg" title="封面" height="280px"> -->
+<br />
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+<h3 id="3-注册信息"><a href="#3-注册信息" class="headerlink" title="3.注册信息"></a>3.注册信息</h3><p>填写好注册信息，点击<strong>Sign up for GitHub(注册)</strong>按钮，接下来是选择协议部分。根据自己的情况选择相关的协议，一般人选的都是免费的那一项。<br><br /></p>
+<h2 id="登录-Github"><a href="#登录-Github" class="headerlink" title="# 登录 Github"></a># 登录 Github</h2><p>在 github 首页点击 <a target="_blank" rel="noopener" href="https://github.com/login" title="https://github.com/login">Sign in</a> 按钮进入登录页面。填写用户名或邮箱和密码，点击<strong>Sign in</strong>按钮登录。<br><img src="img-3.jpg" alt=""></p>
+<!-- <img src="./img-3.jpg" title="封面" height="280px"> -->
+
+<br />
+
+<h2 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="# 配置 SSH"></a># 配置 SSH</h2><!--参考地址： https://www.jianshu.com/p/a3b4f61d4747 -->
+
+<blockquote>
+<p>老手和已注册过的用户略过</p>
+</blockquote>
+<h3 id="windows-系统（mac-系统直接走第-4-步）"><a href="#windows-系统（mac-系统直接走第-4-步）" class="headerlink" title="#windows 系统（mac 系统直接走第 4 步）"></a>#windows 系统（mac 系统直接走第 4 步）</h3><h3 id="1-下载Git-Bash"><a href="#1-下载Git-Bash" class="headerlink" title="1.下载Git Bash"></a>1.下载<strong>Git Bash</strong></h3><p><strong>Git Bash</strong>官网地址：<a target="_blank" rel="noopener" href="https://git-scm.com/">https://git-scm.com/</a><br><br /></p>
+<h3 id="2-打开Git-Bash终端"><a href="#2-打开Git-Bash终端" class="headerlink" title="2.打开Git Bash终端"></a>2.打开<strong>Git Bash</strong>终端</h3><p>在桌面右键，会出现 <code>Git Bash here</code> 的选项，点击即可。<br><br /></p>
+<h3 id="3-设置user-name和email"><a href="#3-设置user-name和email" class="headerlink" title="3.设置user name和email"></a>3.设置<strong>user name</strong>和<strong>email</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">&quot;你的GitHub用户名&quot;</span></span><br><span class="line">$ git config --global user.email <span class="string">&quot;你的GitHub注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h3 id="4-生成ssh密钥"><a href="#4-生成ssh密钥" class="headerlink" title="4.生成ssh密钥"></a>4.生成<strong>ssh</strong>密钥</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;你的GitHub注册邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>一般情况下是不需要密码的，所以，接下来直接回车就好。</p>
+</blockquote>
+<br />
+
+<p>此时，在用户文件夹下就会有一个新的文件夹<code>.ssh</code>，里面有刚刚创建的 ssh 密钥文件<code>id_rsa</code>和<code>id_rsa.pub</code>。<br><span style="color:red;">注：</span><code>id_rsa</code>文件是私钥，要妥善保管，<code>id_rsa.pub</code>是公钥文件。</p>
+<br />
+
+<h3 id="5-添加公钥到-github"><a href="#5-添加公钥到-github" class="headerlink" title="5.添加公钥到 github"></a>5.添加公钥到 github</h3><ul>
+<li><p>点击用户头像，然后点击显示的<code>Settings</code>(设置)选项。<br><img src="img-4.jpg" alt=""></p>
+<!-- <img src="./img-4.jpg" title="封面" height="280px"> -->
+</li>
+<li><p>在用户设置栏，点击<code>SSH and GPG keys</code>选项，然后点击<code>New SSH key</code>(新建 SSH)按钮。<br><img src="img-5.jpg" alt=""></p>
+<!-- <img src="./img-5.jpg" title="封面" height="60px"> -->
+</li>
+<li><p>将<code>id_rsa.pub</code>中的内容复制到<strong>Key</strong>文本框中，然后点击<code>Add SSH key</code>(添加 SSH)按钮。<br><img src="img-6.jpg" alt=""></p>
+<!-- <img src="./img-6.jpg" title="封面" height="280px"> -->
+
+</li>
+</ul>
+<h3 id="6-测试-SSH"><a href="#6-测试-SSH" class="headerlink" title="6.测试 SSH"></a>6.测试 SSH</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接下来会出来下面的确认信息</li>
+</ul>
+<pre><code>The authenticity of host &apos;github.com (207.97.227.239)&apos; can&apos;t be established.
+RSA key fingerprint is 17:24:ac:a5:76:28:24:36:62:1b:36:4d:eb:df:a6:45.
+Are you sure you want to continue connecting (yes/no)?</code></pre><p>输入 <span style="color:red;"><code>yes</code></span> ，然后回车。</p>
+<blockquote>
+<p>显示如下信息则<strong>配置 SSH 成功</strong>！其中的<strong>CC-cat</strong>是用户名。</p>
+</blockquote>
+<pre><code>Hi CC-cat! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</code></pre><br />
+
+<h2 id="创建-GitHub-仓库"><a href="#创建-GitHub-仓库" class="headerlink" title="# 创建 GitHub 仓库"></a># 创建 GitHub 仓库</h2><h3 id="1-点击创建仓库"><a href="#1-点击创建仓库" class="headerlink" title="1.点击创建仓库"></a>1.点击创建仓库</h3><p>点击在登录的用户图像左边的<code>+号</code>和下<code>三角符号</code>按钮。<br><img src="img-7.jpg" alt=""></p>
+<!-- <img src="./img-7.jpg" title="封面" height="160px"> -->
+
+<br />
+
+<h3 id="2-填写创建仓库信息"><a href="#2-填写创建仓库信息" class="headerlink" title="2.填写创建仓库信息"></a>2.填写创建仓库信息</h3><p>仓库名称必须是<code>用户名.github.io</code>（具体看 GitHubPages 创建规则），比如我的用户名是<code>CCcat</code>，就是<code>CCcat.github.io</code>。<br><img src="img-8.jpg" alt=""></p>
+<!-- <img src="./img-8.jpg" title="封面" height="280px"> -->
+
+<br />
+
+<h3 id="3-填写相关信息"><a href="#3-填写相关信息" class="headerlink" title="3.填写相关信息"></a>3.填写相关信息</h3><p>填写好相关信息，点击<strong>Create repository</strong>（创建仓库）按钮。<br><br /></p>
+<h2 id="上传本地项目到-GitHub"><a href="#上传本地项目到-GitHub" class="headerlink" title="# 上传本地项目到 GitHub"></a># 上传本地项目到 GitHub</h2><blockquote>
+<p>以下两种方法二选一</p>
+</blockquote>
+<h3 id="1-通过终端命令行上传（具体方法请自行Google）"><a href="#1-通过终端命令行上传（具体方法请自行Google）" class="headerlink" title="1.通过终端命令行上传（具体方法请自行Google）"></a>1.通过终端命令行上传（具体方法请自行<strong>Google</strong>）</h3><h3 id="2-通过-Sourcetree-软件辅助上传"><a href="#2-通过-Sourcetree-软件辅助上传" class="headerlink" title="2.通过 Sourcetree 软件辅助上传"></a>2.通过 <a target="_blank" rel="noopener" href="https://www.sourcetreeapp.com/" title="Sourcetree">Sourcetree</a> 软件辅助上传</h3><br />
+
+<h2 id="创建-GitHub-Pages"><a href="#创建-GitHub-Pages" class="headerlink" title="# 创建 GitHub Pages"></a># 创建 GitHub Pages</h2><p>找到<strong>GitHub</strong>远端博客项目下，<code>Settings</code>选项下往下找，有一个 <code>GitHub Pages</code> ，按照截图内容配置。<br><img src="img-9.jpg" alt=""><br><img src="img-10.jpg" alt=""></p>
+<!-- <img src="./img-9.jpg" title="封面" height="150px">
+<img src="./img-10.jpg" title="封面" height="280px"> -->
+
+<ul>
+<li>配置完正常显示如下<br><img src="img-11.jpg" alt=""><!-- <img src="./img-11.jpg" title="封面" height="140px"> -->
+
+</li>
+</ul>
+<blockquote>
+<p>按照截图配置成功后，此时就可以初始化 git 本地仓库，部署 Hexo 了。<br>部署 Hexo，请看 <strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（三）</strong></p>
+</blockquote>
+<br />
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><blockquote>
+<p>第一步，我们搭建了本地的 Hexo 博客，并通过 <code>http://localhost:4000</code> 访问了它。<br><strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（一）</strong><br>第二步，我们要将博客上传到 GitHub，并通过 <code>Github-Pages</code> 配置在网页上提供访问。详情请看文章：<br><strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（二）</strong><br>第三步，部署 Hexo，将 hexo 生成的静态内容部署到配置的仓库中，详情请看文章：<br><strong>手把手教你使用 Hexo-Github-Pages 搭建个人独立博客（三）</strong></p>
+</blockquote>
+<br />
+
+<!-- link -->
+
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/hexo/">hexo</a><a class="link-muted mr-2" rel="tag" href="/tags/gitHub/">gitHub</a><a class="link-muted mr-2" rel="tag" href="/tags/github-pages/">github-pages</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/create-the-blog-3/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">（三）教你使用Hexo-Github-Pages搭建个人独立博客</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/create-the-blog-1/"><span class="level-item">（一）教你使用Hexo-Github-Pages搭建个人独立博客</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://cc-cat.github.io/create-the-blog-2/';
+            this.page.identifier = 'create-the-blog-2/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'cccat-blog' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="CCcat"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">CCcat</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>BeiJing</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">15</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/CC-cat" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/CC-cat"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="http://www.ruanyifeng.com/blog/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">阮一峰</span></span><span class="level-right"><span class="level-item tag">www.ruanyifeng.com</span></span></a></li><li><a class="level is-mobile" href="https://fan-yin.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Aamen</span></span><span class="level-right"><span class="level-item tag">fan-yin.com</span></span></a></li><li><a class="level is-mobile" href="http://jian-yin.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">辉儿</span></span><span class="level-right"><span class="level-item tag">jian-yin.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Vue%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88-%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF/"><span class="tag">Vue后台集成方案(基础模板)</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/element-ui/"><span class="tag">element-ui</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gitHub/"><span class="tag">gitHub</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github-pages/"><span class="tag">github-pages</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hello-world/"><span class="tag">hello-world</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/postMessage/"><span class="tag">postMessage</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/promise/"><span class="tag">promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/theme/"><span class="tag">theme</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vue/"><span class="tag">vue</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vue-admin-template/"><span class="tag">vue-admin-template</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack/"><span class="tag">webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/websocket/"><span class="tag">websocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%A8%E5%9F%9F%E9%80%9A%E8%AE%AF/"><span class="tag">跨域通讯</span><span class="tag">1</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#注册-GitHub"><span class="level-left"><span class="level-item">1</span><span class="level-item"># 注册 GitHub</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-打开-GitHub-官网"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1.打开 GitHub 官网</span></span></a></li><li><a class="level is-mobile" href="#2-填写注册信息进行注册操作"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">2.填写注册信息进行注册操作</span></span></a></li><li><a class="level is-mobile" href="#3-注册信息"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">3.注册信息</span></span></a></li></ul></li><li><a class="level is-mobile" href="#登录-Github"><span class="level-left"><span class="level-item">2</span><span class="level-item"># 登录 Github</span></span></a></li><li><a class="level is-mobile" href="#配置-SSH"><span class="level-left"><span class="level-item">3</span><span class="level-item"># 配置 SSH</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#windows-系统（mac-系统直接走第-4-步）"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">#windows 系统（mac 系统直接走第 4 步）</span></span></a></li><li><a class="level is-mobile" href="#1-下载Git-Bash"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">1.下载Git Bash</span></span></a></li><li><a class="level is-mobile" href="#2-打开Git-Bash终端"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">2.打开Git Bash终端</span></span></a></li><li><a class="level is-mobile" href="#3-设置user-name和email"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">3.设置user name和email</span></span></a></li><li><a class="level is-mobile" href="#4-生成ssh密钥"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">4.生成ssh密钥</span></span></a></li><li><a class="level is-mobile" href="#5-添加公钥到-github"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">5.添加公钥到 github</span></span></a></li><li><a class="level is-mobile" href="#6-测试-SSH"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">6.测试 SSH</span></span></a></li></ul></li><li><a class="level is-mobile" href="#创建-GitHub-仓库"><span class="level-left"><span class="level-item">4</span><span class="level-item"># 创建 GitHub 仓库</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-点击创建仓库"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">1.点击创建仓库</span></span></a></li><li><a class="level is-mobile" href="#2-填写创建仓库信息"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">2.填写创建仓库信息</span></span></a></li><li><a class="level is-mobile" href="#3-填写相关信息"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">3.填写相关信息</span></span></a></li></ul></li><li><a class="level is-mobile" href="#上传本地项目到-GitHub"><span class="level-left"><span class="level-item">5</span><span class="level-item"># 上传本地项目到 GitHub</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-通过终端命令行上传（具体方法请自行Google）"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">1.通过终端命令行上传（具体方法请自行Google）</span></span></a></li><li><a class="level is-mobile" href="#2-通过-Sourcetree-软件辅助上传"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">2.通过 Sourcetree 软件辅助上传</span></span></a></li></ul></li><li><a class="level is-mobile" href="#创建-GitHub-Pages"><span class="level-left"><span class="level-item">6</span><span class="level-item"># 创建 GitHub Pages</span></span></a></li><li><a class="level is-mobile" href="#结语"><span class="level-left"><span class="level-item">7</span><span class="level-item"># 结语</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-05-15T06:00:36.000Z">2019-05-15</time></p><p class="title"><a href="/h5-postMessage/">html5 postMessage解决跨域、跨窗口消息传递</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-28T04:08:49.000Z">2019-02-28</time></p><p class="title"><a href="/create-vue-admin-template/">Vue后台集成方案 之 基础模板</a></p><p class="categories"><a href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-17T06:10:04.000Z">2019-02-17</time></p><p class="title"><a href="/create-the-blog-5/">Hexo 更换主题风格 之 hexo-theme-snippet</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-15T05:05:37.000Z">2019-02-15</time></p><p class="title"><a href="/vue-project/">vue从0到1：vue + webpack + element-ui + axios 项目搭建</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-12T08:59:05.000Z">2019-02-12</time></p><p class="title"><a href="/ECMAScript-6-Promise/">ECMAScript 6 - Promise对象</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">前端</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="level-start"><span class="level-item">后端</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">CCcat | Blog</a><p class="is-size-7"><span>&copy; 2020 CCcat</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

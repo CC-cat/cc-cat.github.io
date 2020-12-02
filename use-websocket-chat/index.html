@@ -1,43 +1,207 @@
-const { Component } = require('inferno');
-const classname = require('hexo-component-inferno/lib/util/classname');
-const Head = require('./common/head');
-const Navbar = require('./common/navbar');
-const Widgets = require('./common/widgets');
-const Footer = require('./common/footer');
-const Scripts = require('./common/scripts');
-const Search = require('./common/search');
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>使用socket.io和node.js搭建websocket应用 - CCcat | Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="CCcat | Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="CCcat | Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta description="# 介绍使用流行的 Web 应用程序堆栈（如 LAMP（PHP））编写聊天应用程序一直非常困难。它涉及轮询服务器以进行更改，跟踪时间戳，并且它比它应该慢得多。 传统上，套接字是大多数实时聊天系统所构建的解决方案，在客户端和服务器之间提供双向通信通道。"><meta property="og:type" content="blog"><meta property="og:title" content="使用socket.io和node.js搭建websocket应用"><meta property="og:url" content="https://cc-cat.github.io/use-websocket-chat/"><meta property="og:site_name" content="CCcat | Blog"><meta property="og:description" content="# 介绍使用流行的 Web 应用程序堆栈（如 LAMP（PHP））编写聊天应用程序一直非常困难。它涉及轮询服务器以进行更改，跟踪时间戳，并且它比它应该慢得多。 传统上，套接字是大多数实时聊天系统所构建的解决方案，在客户端和服务器之间提供双向通信通道。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-1.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-1.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-2.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-2.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-3.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-3.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-4.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-4.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-5.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-5.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-7.jpg"><meta property="og:image" content="https://cc-cat.github.io/use-websocket-chat/img-7.jpg"><meta property="article:published_time" content="2019-01-08T09:13:15.000Z"><meta property="article:modified_time" content="2020-12-02T09:47:42.037Z"><meta property="article:author" content="CCcat"><meta property="article:tag" content="websocket"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/use-websocket-chat/img-1.jpg"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://cc-cat.github.io/use-websocket-chat/"},"headline":"CCcat | Blog","image":["https://cc-cat.github.io/use-websocket-chat/img-1.jpg","https://cc-cat.github.io/use-websocket-chat/img-1.jpg","https://cc-cat.github.io/use-websocket-chat/img-2.jpg","https://cc-cat.github.io/use-websocket-chat/img-2.jpg","https://cc-cat.github.io/use-websocket-chat/img-3.jpg","https://cc-cat.github.io/use-websocket-chat/img-3.jpg","https://cc-cat.github.io/use-websocket-chat/img-4.jpg","https://cc-cat.github.io/use-websocket-chat/img-4.jpg","https://cc-cat.github.io/use-websocket-chat/img-5.jpg","https://cc-cat.github.io/use-websocket-chat/img-5.jpg","https://cc-cat.github.io/use-websocket-chat/img-7.jpg","https://cc-cat.github.io/use-websocket-chat/img-7.jpg"],"datePublished":"2019-01-08T09:13:15.000Z","dateModified":"2020-12-02T09:47:42.037Z","author":{"@type":"Person","name":"CCcat"},"description":"# 介绍使用流行的 Web 应用程序堆栈（如 LAMP（PHP））编写聊天应用程序一直非常困难。它涉及轮询服务器以进行更改，跟踪时间戳，并且它比它应该慢得多。 传统上，套接字是大多数实时聊天系统所构建的解决方案，在客户端和服务器之间提供双向通信通道。"}</script><link rel="canonical" href="https://cc-cat.github.io/use-websocket-chat/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.2.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/">CCcat | Blog</a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2019-01-08T09:13:15.000Z" title="2019-01-08T09:13:15.000Z">2019-01-08</time>发表</span><span class="level-item"><time dateTime="2020-12-02T09:47:42.037Z" title="2020-12-02T09:47:42.037Z">2020-12-02</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a></span><span class="level-item">7 分钟读完 (大约995个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">使用socket.io和node.js搭建websocket应用</h1><div class="content"><img src="/use-websocket-chat/img-1.jpg" class="" title="封面">
+<!-- <img src="./img-1.jpg" title="封面" height="200px"> -->
 
-module.exports = class extends Component {
-    render() {
-        const { site, config, page, helper, body } = this.props;
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="# 介绍"></a># 介绍</h2><p>使用流行的 Web 应用程序堆栈（如 LAMP（PHP））编写聊天应用程序一直非常困难。它涉及轮询服务器以进行更改，跟踪时间戳，并且它比它应该慢得多。</p>
+<p>传统上，套接字是大多数实时聊天系统所构建的解决方案，在客户端和服务器之间提供双向通信通道。</p>
+<a id="more"></a>
 
-        const language = page.lang || page.language || config.language;
-        const columnCount = Widgets.getColumnCount(config.widgets);
+<p>这意味着服务器可以将消息推送到客户端。每当您编写聊天消息时，其想法是服务器将获取它并将其推送到所有其他连接的客户端。</p>
+<p>参考官方文档<strong>socket.io</strong>：<a target="_blank" rel="noopener" href="https://socket.io/get-started/chat/">https://socket.io/get-started/chat/</a><br>下面是我个人理解的简易版：<br><br /></p>
+<h2 id="Web-框架"><a href="#Web-框架" class="headerlink" title="# Web 框架"></a># Web 框架</h2><h3 id="1-新建文件夹"><a href="#1-新建文件夹" class="headerlink" title="1.新建文件夹"></a>1.新建文件夹</h3><p>新建一个文件夹 <code>airconnect</code>（文件夹名称自定义）。</p>
+<ul>
+<li>终端运行：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir airconnect</span><br></pre></td></tr></table></figure>
 
-        return <html lang={language ? language.substr(0, 2) : ''}>
-            <Head site={site} config={config} helper={helper} page={page} />
-            <body class={`is-${columnCount}-column`}>
-                <Navbar config={config} helper={helper} page={page} />
-                <section class="section">
-                    <div class="container">
-                        <div class="columns">
-                            <div class={classname({
-                                column: true,
-                                'order-2': true,
-                                'column-main': true,
-                                'is-12': columnCount === 1,
-                                'is-8-tablet is-8-desktop is-8-widescreen': columnCount === 2,
-                                'is-8-tablet is-8-desktop is-6-widescreen': columnCount === 3
-                            })} dangerouslySetInnerHTML={{ __html: body }}></div>
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'left'} />
-                            <Widgets site={site} config={config} helper={helper} page={page} position={'right'} />
-                        </div>
-                    </div>
-                </section>
-                <Footer config={config} helper={helper} />
-                <Scripts site={site} config={config} helper={helper} page={page} />
-                <Search config={config} helper={helper} />
-            </body>
-        </html>;
-    }
-};
+<br />
+
+<h3 id="2-新建文件"><a href="#2-新建文件" class="headerlink" title="2.新建文件"></a>2.新建文件</h3><p>在 <code>airconnect</code> 文件夹下，初始化文件 <code>package.json</code>。</p>
+<ul>
+<li>终端运行：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> airconnect</span><br><span class="line">$ npm init -y</span><br></pre></td></tr></table></figure>
+
+<br />
+
+<h3 id="3-安装-socket-io-模块。"><a href="#3-安装-socket-io-模块。" class="headerlink" title="3.安装 socket.io 模块。"></a>3.安装 <code>socket.io</code> 模块。</h3><blockquote>
+<p>在 <code>airconnect</code> 文件夹目录路径下</p>
+</blockquote>
+<ul>
+<li>终端运行：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --save socket.io</span><br></pre></td></tr></table></figure>
+
+<p>截图：<br><img src="img-2.jpg" alt=""></p>
+<!-- <img src="./img-2.jpg" title="封面" height="160px"> -->
+
+<p>没有报错就是安装成功！（ WARN 的原因是有一些配置没添加，无所谓，我们现在只做简易版的。 ）</p>
+<p>4.在 <code>airconnect</code> 文件夹下，新建一个文件 <code>app.js</code>。</p>
+<ul>
+<li><p><code>app.js</code> 文件：<br><a target="_blank" rel="noopener" href="https://gitlab.com/snippets/1795935">https://gitlab.com/snippets/1795935</a></p>
+</li>
+<li><p>app.js 文件内容如下：</p>
+</li>
+</ul>
+<div style="height:300px;overflow:auto;border:1px solid #ccc;">``` bash
+// 引入需要的模块：http和socket.io
+// 定义端口号：8080
+var http = require('http'),
+    io = require('socket.io'),
+    port = process.env.PORT || 8080;
+
+<p>//创建 server<br>var server = http.createServer(function (req, res) {<br>// Send HTML headers and message<br>res.writeHead(200, {<br>‘Content-Type’: ‘text/html’<br>});<br>res.end(‘# Hello Socket Lover!’);<br>});</p>
+<p>// listener<br>// 监听 端口(8080) 事件<br>server.listen(port, function () {<br>console.log(‘listening on *:’ + port);<br>});</p>
+<p>// 创建 socket<br>var socket = io.listen(server);</p>
+<p>// 添加连接监听<br>socket.on(‘connection’, function (client) {</p>
+<pre><code>// 连接成功则执行下面的监听
+client.on(&apos;message&apos;, function (event) &#123;
+    // Received message from client!
+    console.log(&apos;message&apos;, event);
+    socket.emit(&quot;message&quot;, event);
+&#125;);
+
+client.on(&apos;data&apos;, function (event) &#123;
+    // Received data from client!
+    console.log(&apos;data&apos;, event);
+    socket.emit(&quot;data&quot;, event);
+&#125;);
+
+// 断开连接callback
+client.on(&apos;disconnect&apos;, function () &#123;
+    console.log(&apos;Server has disconnected&apos;);
+&#125;);</code></pre><p>});</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">&lt;br &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">* 现在的 &#96;airconnect&#96; 文件夹内容截图：</span><br><span class="line"></span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;img-6.jpg&quot; title&#x3D;&quot;封面&quot; height&#x3D;&quot;180px&quot;&gt;</span><br><span class="line"></span><br><span class="line">关于截图里的 &#96;page1.html&#96;、&#96;page2.html&#96; 文件，我们后续讲到。</span><br><span class="line"></span><br><span class="line">&lt;br &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">### 5.运行</span><br><span class="line"></span><br><span class="line">* 我们使http服务器侦听端口8080，这时在终端运行命令：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96; bash</span><br><span class="line">$ node app.js</span><br></pre></td></tr></table></figure>
+
+<p>截图：<br><img src="img-3.jpg" alt=""></p>
+<!-- <img src="./img-3.jpg" title="封面" height="140px"> -->
+
+<ul>
+<li>如果您将浏览器指向 <a target="_blank" rel="noopener" href="http://localhost:8080">http://localhost:8080</a>：</li>
+</ul>
+<p>截图：<br><img src="img-4.jpg" alt=""></p>
+<!-- <img src="./img-4.jpg" title="封面" height="200px"> -->
+<p>对应的输入 log:<br><img src="img-5.jpg" alt=""></p>
+<!-- <img src="./img-5.jpg" title="封面" height="140px"> -->
+
+<p>输出正确的 log，就是运行成功！</p>
+<br />
+
+<h2 id="提供-HTML"><a href="#提供-HTML" class="headerlink" title="# 提供 HTML"></a># 提供 HTML</h2><ul>
+<li><code>page1.html</code> 文件：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://jsbin.com/zaxida/1/edit?html,console,output">https://jsbin.com/zaxida/1/edit?html,console,output</a></p>
+<ul>
+<li><code>page2.html</code> 文件：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://jsbin.com/meyopov/2/edit?html,console,output">https://jsbin.com/meyopov/2/edit?html,console,output</a></p>
+<br />
+
+<h2 id="实现通讯"><a href="#实现通讯" class="headerlink" title="# 实现通讯"></a># 实现通讯</h2><p><img src="img-7.jpg" alt=""></p>
+<!-- <img src="./img-7.jpg" title="封面" height="140px"> -->
+
+<br />
+
+<ul>
+<li>视频演示地址：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1mKQu6P10lT331CvkJGWuLg">https://pan.baidu.com/s/1mKQu6P10lT331CvkJGWuLg</a></p>
+<blockquote>
+<p>说明：</p>
+</blockquote>
+<p>第一步：<br>打开终端，在 <code>airconnect</code> 文件夹目录路径下，运行命令： <strong>node app.js</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node app.js</span><br></pre></td></tr></table></figure>
+
+<p>检查：在浏览器标签页中，打开 <a target="_blank" rel="noopener" href="http://localhost:8080">http://localhost:8080</a>，查看正确的 log 信息是否显示。</p>
+<p>第二步：<br>在浏览器标签页中，分别打开 <code>page1.html</code> 和 <code>page2.html</code> 文件。</p>
+<ul>
+<li>可以手动拖拽到浏览器标签页中</li>
+<li>或者鼠标双击本地文件，将自动在浏览器标签页中打开</li>
+</ul>
+<p>第三步：<br>在 <code>page1.html</code> 输入框中输入任意文本，测试 <code>page2.html</code> 是否能正确接收到 <code>page1</code> 发送的信息。</p>
+<hr>
+<ul>
+<li><p>设置 服务器地址 和 端口号 8080</p>
+<p>socket = io.connect(‘<a href="http://localhost:8080&#39;">http://localhost:8080&#39;</a>)</p>
+</li>
+</ul>
+<br />
+
+<ul>
+<li><p>接收 message 字段名发送的消息</p>
+<p>socket.on(‘message’, function (json) {})</p>
+</li>
+</ul>
+<br />
+
+<ul>
+<li><p>接收 data 字段名发送的消息</p>
+<p>socket.on(‘data’, function (json) {})</p>
+</li>
+</ul>
+<br />
+
+<blockquote>
+<p>端口号 <code>8080</code>，可以自定义。<br><code>message</code> 和 <code>data</code> 字段名，可以自定义。</p>
+</blockquote>
+<br />
+
+<h2 id="结语"><a href="#结语" class="headerlink" title="# 结语"></a># 结语</h2><p>以上就完成了<strong>使用 socket.io 和 node.js 搭建 websocket 应用</strong>。</p>
+<br />
+
+<!-- link -->
+
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/websocket/">websocket</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/ECMAScript-6-Promise/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">ECMAScript 6 - Promise对象</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/create-the-blog-4/"><span class="level-item">（四）教你任意更换 Hexo 主题风格</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://cc-cat.github.io/use-websocket-chat/';
+            this.page.identifier = 'use-websocket-chat/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'cccat-blog' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="CCcat"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">CCcat</p><p class="is-size-6 is-block">Web Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>BeiJing</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">3</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">15</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/CC-cat" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/CC-cat"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2019/05/"><span class="level-start"><span class="level-item">五月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/02/"><span class="level-start"><span class="level-item">二月 2019</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2019/01/"><span class="level-start"><span class="level-item">一月 2019</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2018/12/"><span class="level-start"><span class="level-item">十二月 2018</span></span><span class="level-end"><span class="level-item tag">5</span></span></a></li></ul></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="http://www.ruanyifeng.com/blog/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">阮一峰</span></span><span class="level-right"><span class="level-item tag">www.ruanyifeng.com</span></span></a></li><li><a class="level is-mobile" href="https://fan-yin.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Aamen</span></span><span class="level-right"><span class="level-item tag">fan-yin.com</span></span></a></li><li><a class="level is-mobile" href="http://jian-yin.com/" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">辉儿</span></span><span class="level-right"><span class="level-item tag">jian-yin.com</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Vue%E5%90%8E%E5%8F%B0%E9%9B%86%E6%88%90%E6%96%B9%E6%A1%88-%E5%9F%BA%E7%A1%80%E6%A8%A1%E6%9D%BF/"><span class="tag">Vue后台集成方案(基础模板)</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/element-ui/"><span class="tag">element-ui</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/es6/"><span class="tag">es6</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/gitHub/"><span class="tag">gitHub</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/github-pages/"><span class="tag">github-pages</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hello-world/"><span class="tag">hello-world</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/postMessage/"><span class="tag">postMessage</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/promise/"><span class="tag">promise</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/theme/"><span class="tag">theme</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vue/"><span class="tag">vue</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vue-admin-template/"><span class="tag">vue-admin-template</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/webpack/"><span class="tag">webpack</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/websocket/"><span class="tag">websocket</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%B7%A8%E5%9F%9F%E9%80%9A%E8%AE%AF/"><span class="tag">跨域通讯</span><span class="tag">1</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#介绍"><span class="level-left"><span class="level-item">1</span><span class="level-item"># 介绍</span></span></a></li><li><a class="level is-mobile" href="#Web-框架"><span class="level-left"><span class="level-item">2</span><span class="level-item"># Web 框架</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-新建文件夹"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">1.新建文件夹</span></span></a></li><li><a class="level is-mobile" href="#2-新建文件"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">2.新建文件</span></span></a></li><li><a class="level is-mobile" href="#3-安装-socket-io-模块。"><span class="level-left"><span class="level-item">2.3</span><span class="level-item">3.安装 socket.io 模块。</span></span></a></li></ul></li><li><a class="level is-mobile" href="#提供-HTML"><span class="level-left"><span class="level-item">3</span><span class="level-item"># 提供 HTML</span></span></a></li><li><a class="level is-mobile" href="#实现通讯"><span class="level-left"><span class="level-item">4</span><span class="level-item"># 实现通讯</span></span></a></li><li><a class="level is-mobile" href="#结语"><span class="level-left"><span class="level-item">5</span><span class="level-item"># 结语</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-05-15T06:00:36.000Z">2019-05-15</time></p><p class="title"><a href="/h5-postMessage/">html5 postMessage解决跨域、跨窗口消息传递</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-28T04:08:49.000Z">2019-02-28</time></p><p class="title"><a href="/create-vue-admin-template/">Vue后台集成方案 之 基础模板</a></p><p class="categories"><a href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-17T06:10:04.000Z">2019-02-17</time></p><p class="title"><a href="/create-the-blog-5/">Hexo 更换主题风格 之 hexo-theme-snippet</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-15T05:05:37.000Z">2019-02-15</time></p><p class="title"><a href="/vue-project/">vue从0到1：vue + webpack + element-ui + axios 项目搭建</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2019-02-12T08:59:05.000Z">2019-02-12</time></p><p class="title"><a href="/ECMAScript-6-Promise/">ECMAScript 6 - Promise对象</a></p><p class="categories"><a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></p></div></article></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="level-start"><span class="level-item">前端</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="level-start"><span class="level-item">后端</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%B7%A5%E5%85%B7/"><span class="level-start"><span class="level-item">工具</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/">CCcat | Blog</a><p class="is-size-7"><span>&copy; 2020 CCcat</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" async></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
